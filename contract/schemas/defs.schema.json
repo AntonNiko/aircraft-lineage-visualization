@@ -37,9 +37,10 @@
     },
     "airframeId": {
       "title": "AirframeId",
-      "description": "Stable airframe ID: {manufacturer}-{programme}-{msn}, three lowercase alphanumeric segments. Hyphens and other punctuation are removed inside each segment so the ID always splits into exactly three parts.",
+      "description": "Stable airframe ID: {manufacturer}-{programme}-{msn}, three lowercase alphanumeric segments. Hyphens and other punctuation are removed inside each segment so the ID always splits into exactly three parts. Never starts with 'al-', so it can't be confused with an airline ID.",
       "type": "string",
       "pattern": "^[a-z0-9]+-[a-z0-9]+-[a-z0-9]+$",
+      "not": { "pattern": "^al-" },
       "maxLength": 64,
       "examples": ["airbus-a320fam-4101", "boeing-737-29934", "dehavillandcanada-dhc8-4301"]
     },

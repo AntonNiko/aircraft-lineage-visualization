@@ -19,7 +19,7 @@
     },
     "airframeId": {
       "valid": ["airbus-a320fam-4101", "boeing-737-29934", "dehavillandcanada-dhc8-4301", "bae-146-e3432"],
-      "invalid": ["airbus-a320fam", "airbus-a320fam-4101-x", "Airbus-a320fam-4101", "airbus_a320fam_4101", "airbus-a320fam-", "-a320fam-4101", "airbus--4101", "", null]
+      "invalid": ["airbus-a320fam", "airbus-a320fam-4101-x", "Airbus-a320fam-4101", "airbus_a320fam_4101", "airbus-a320fam-", "-a320fam-4101", "airbus--4101", "al-example-air", "", null]
     },
     "typeFamily": {
       "valid": ["a320fam", "737", "ejet"],

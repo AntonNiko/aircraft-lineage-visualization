@@ -79,7 +79,7 @@ The exact patterns live in `defs.schema.json`.
 | Month | `YYYY-MM` | `"2026-08"` |
 | Timestamp | RFC 3339, UTC with `Z` | `"2026-09-12T10:00:00Z"` |
 | Airline ID | `al-` + lowercase slug; pipeline-assigned, never an ICAO code | `"al-lufthansa"` |
-| Airframe ID | `{manufacturer}-{programme}-{msn}`, lowercase | `"airbus-a320fam-4101"` |
+| Airframe ID | `{manufacturer}-{programme}-{msn}`, lowercase; never starts with `al-` | `"airbus-a320fam-4101"` |
 | Type family | lowercase slug; `other` for types that can't be mapped | `"a320fam"` |
 | ICAO type code | Doc 8643 designator | `"A20N"` |
 | Registration | uppercase, hyphen-separated groups | `"D-AIZA"` |

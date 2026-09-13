@@ -1,0 +1,317 @@
+{
+  "description": "Whole-document cases for schemas/search-docs.schema.json. Each invalid case says why it must fail. Coverage (one doc per airline and aircraft) and sort order are checked by dataset tests, not the schema.",
+  "valid": [
+    {
+      "docs": []
+    },
+    {
+      "docs": [
+        {
+          "kind": "aircraft",
+          "id": "airbus-a320fam-9001",
+          "airline_id": "al-example-air",
+          "label": "D-AXAA · A320 · Example Air",
+          "terms": [
+            "3C6DA1",
+            "9001",
+            "D-AXAA"
+          ]
+        },
+        {
+          "kind": "airline",
+          "id": "al-example-air",
+          "label": "Example Air (X7 / XEA)",
+          "terms": [
+            "Example Air",
+            "X7",
+            "XEA"
+          ]
+        }
+      ]
+    },
+    {
+      "docs": [
+        {
+          "kind": "aircraft",
+          "id": "bae-146-e3432",
+          "airline_id": null,
+          "label": "MSN E3432 · other",
+          "terms": [
+            "E3432"
+          ]
+        }
+      ]
+    },
+    {
+      "docs": [
+        {
+          "kind": "airline",
+          "id": "al-old-example",
+          "label": "Old Example",
+          "terms": [
+            "Old Example",
+            "Older Example Name"
+          ]
+        }
+      ]
+    }
+  ],
+  "invalid": [
+    {
+      "why": "unknown kind",
+      "value": {
+        "docs": [
+          {
+            "kind": "route",
+            "id": "airbus-a320fam-9001",
+            "airline_id": "al-example-air",
+            "label": "D-AXAA · A320 · Example Air",
+            "terms": [
+              "3C6DA1",
+              "9001",
+              "D-AXAA"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "why": "aircraft doc with an airline ID as id",
+      "value": {
+        "docs": [
+          {
+            "kind": "aircraft",
+            "id": "al-example-air",
+            "airline_id": "al-example-air",
+            "label": "D-AXAA · A320 · Example Air",
+            "terms": [
+              "3C6DA1",
+              "9001",
+              "D-AXAA"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "why": "airline doc with an airframe ID as id",
+      "value": {
+        "docs": [
+          {
+            "kind": "airline",
+            "id": "airbus-a320fam-9001",
+            "label": "Example Air (X7 / XEA)",
+            "terms": [
+              "Example Air",
+              "X7",
+              "XEA"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "why": "aircraft doc missing airline_id",
+      "value": {
+        "docs": [
+          {
+            "kind": "aircraft",
+            "id": "airbus-a320fam-9001",
+            "label": "D-AXAA · A320 · Example Air",
+            "terms": [
+              "3C6DA1",
+              "9001",
+              "D-AXAA"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "why": "airline doc with an airline_id field",
+      "value": {
+        "docs": [
+          {
+            "kind": "airline",
+            "id": "al-example-air",
+            "label": "Example Air (X7 / XEA)",
+            "terms": [
+              "Example Air",
+              "X7",
+              "XEA"
+            ],
+            "airline_id": "al-example-air"
+          }
+        ]
+      }
+    },
+    {
+      "why": "aircraft doc with kind omitted",
+      "value": {
+        "docs": [
+          {
+            "id": "airbus-a320fam-9001",
+            "airline_id": "al-example-air",
+            "label": "D-AXAA · A320 · Example Air",
+            "terms": [
+              "3C6DA1",
+              "9001",
+              "D-AXAA"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "why": "empty label",
+      "value": {
+        "docs": [
+          {
+            "kind": "aircraft",
+            "id": "airbus-a320fam-9001",
+            "airline_id": "al-example-air",
+            "label": "",
+            "terms": [
+              "3C6DA1",
+              "9001",
+              "D-AXAA"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "why": "label is null",
+      "value": {
+        "docs": [
+          {
+            "kind": "airline",
+            "id": "al-example-air",
+            "label": null,
+            "terms": [
+              "Example Air",
+              "X7",
+              "XEA"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "why": "empty terms",
+      "value": {
+        "docs": [
+          {
+            "kind": "aircraft",
+            "id": "airbus-a320fam-9001",
+            "airline_id": "al-example-air",
+            "label": "D-AXAA · A320 · Example Air",
+            "terms": []
+          }
+        ]
+      }
+    },
+    {
+      "why": "duplicate terms",
+      "value": {
+        "docs": [
+          {
+            "kind": "aircraft",
+            "id": "airbus-a320fam-9001",
+            "airline_id": "al-example-air",
+            "label": "D-AXAA · A320 · Example Air",
+            "terms": [
+              "D-AXAA",
+              "D-AXAA"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "why": "term with leading whitespace",
+      "value": {
+        "docs": [
+          {
+            "kind": "airline",
+            "id": "al-example-air",
+            "label": "Example Air (X7 / XEA)",
+            "terms": [
+              " Example Air"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "why": "term with trailing whitespace",
+      "value": {
+        "docs": [
+          {
+            "kind": "airline",
+            "id": "al-example-air",
+            "label": "Example Air (X7 / XEA)",
+            "terms": [
+              "Example Air "
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "why": "term longer than 100 characters",
+      "value": {
+        "docs": [
+          {
+            "kind": "airline",
+            "id": "al-example-air",
+            "label": "Example Air (X7 / XEA)",
+            "terms": [
+              "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "why": "term is not a string",
+      "value": {
+        "docs": [
+          {
+            "kind": "aircraft",
+            "id": "airbus-a320fam-9001",
+            "airline_id": "al-example-air",
+            "label": "D-AXAA · A320 · Example Air",
+            "terms": [
+              9001
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "why": "unannounced field on a doc",
+      "value": {
+        "docs": [
+          {
+            "kind": "airline",
+            "id": "al-example-air",
+            "label": "Example Air (X7 / XEA)",
+            "terms": [
+              "Example Air",
+              "X7",
+              "XEA"
+            ],
+            "score": 1.0
+          }
+        ]
+      }
+    },
+    {
+      "why": "docs is null instead of []",
+      "value": {
+        "docs": null
+      }
+    }
+  ]
+}

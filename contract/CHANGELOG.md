@@ -18,3 +18,9 @@ Start an entry with **Breaking:** when it is a Major change.
 - `airlines.schema.json`: every airline, including ceased ones, with codes, dates, successor, logo, `fleet_count` and `family_counts` (values sum to `fleet_count`).
 - `fleet.schema.json`: `fleets/{airline_id}.json` with the current aircraft in circle-pack slot order. `family` is never null; unmapped types use `other`.
 - `examples/minimal/` now has two airlines and four aircraft, with test cases for both new schemas.
+- `search-docs.schema.json`: aircraft and airline search documents with `kind`, `id`, `label` and `terms`. Aircraft docs also carry `airline_id`, so selecting a result loads only that airline's fleet.
+- `examples/minimal/search-docs.json` and `tests/search-docs.cases.json`.
+
+### Changed
+
+- `airframeId` can no longer start with `al-`, so airframe and airline IDs can't be confused.

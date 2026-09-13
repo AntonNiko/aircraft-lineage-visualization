@@ -1,0 +1,44 @@
+{
+  "docs": [
+    {
+      "kind": "aircraft",
+      "id": "airbus-a320fam-9001",
+      "airline_id": "al-example-air",
+      "label": "D-AXAA · A320 · Example Air",
+      "terms": ["3C6DA1", "9001", "D-AXAA"]
+    },
+    {
+      "kind": "aircraft",
+      "id": "airbus-a320fam-9002",
+      "airline_id": "al-example-air",
+      "label": "D-AXAB · A321 · Example Air",
+      "terms": ["9002", "D-AXAB", "OE-IXB"]
+    },
+    {
+      "kind": "aircraft",
+      "id": "airbus-a350-142",
+      "airline_id": "al-example-air",
+      "label": "D-AXAC · A359 · Example Air",
+      "terms": ["142", "D-AXAC"]
+    },
+    {
+      "kind": "aircraft",
+      "id": "embraer-ejet-19000123",
+      "airline_id": "al-sample-regional",
+      "label": "SE-RXA · E190 · Sample Regional",
+      "terms": ["19000123", "SE-RXA"]
+    },
+    {
+      "kind": "airline",
+      "id": "al-example-air",
+      "label": "Example Air (X7 / XEA)",
+      "terms": ["Example Air", "X7", "XEA"]
+    },
+    {
+      "kind": "airline",
+      "id": "al-sample-regional",
+      "label": "Sample Regional (X9 / XSR)",
+      "terms": ["Sample Regional", "X9", "XSR"]
+    }
+  ]
+}

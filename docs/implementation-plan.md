@@ -156,8 +156,8 @@ Sketches:
   } ] }
 
 // search-docs.json
-{ "docs": [ { "id": "airbus-a320fam-4101", "kind": "aircraft",
-              "label": "D-AIZA · A320 · Lufthansa", "terms": ["D-AIZA", "4101", "3C4B21"] } ] }
+{ "docs": [ { "kind": "aircraft", "id": "airbus-a320fam-4101", "airline_id": "al-lufthansa",
+              "label": "D-AIZA · A320 · Lufthansa", "terms": ["3C4B21", "4101", "D-AIZA"] } ] }
 ```
 
 **Pack layout note:** `airlines.json` has `family_counts`, so the full pack (including one circle slot per aircraft) can be laid out before any fleet shard loads. When the user zooms into an airline, its shard loads and aircraft fill the slots in a fixed order (`family`, then `built`, then `reg`). That keeps positions stable.
