@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aircraft-lineage.example/contract/sources.schema.json",
+  "title": "Sources",
+  "description": "Every data source that records in the dataset cite through source_ids. Also drives the attribution page.",
+  "x-contract-status": "stable",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["sources"],
+  "properties": {
+    "sources": {
+      "description": "All sources, sorted by id. IDs must be unique; JSON Schema can't check uniqueness by field, so producers and tests must.",
+      "type": "array",
+      "items": { "$ref": "#/$defs/source" }
+    }
+  },
+  "$defs": {
+    "source": {
+      "title": "Source",
+      "description": "One data source, such as a registry snapshot or a photo archive.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "url", "license", "retrieved_at"],
+      "properties": {
+        "id": {
+          "description": "Stable ID referenced by source_ids. Snapshot-based sources include the month (e.g. opensky-2026-08).",
+          "$ref": "defs.schema.json#/$defs/sourceId"
+        },
+        "name": {
+          "description": "Human-readable name shown in credits.",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "examples": ["OpenSky Network aircraft database (2026-08 snapshot)"]
+        },
+        "url": {
+          "description": "Where the data can be found, or null for sources with no public location (e.g. manual overrides).",
+          "oneOf": [{ "$ref": "defs.schema.json#/$defs/httpsUrl" }, { "type": "null" }]
+        },
+        "license": {
+          "description": "License or terms the data is used under, or null when it varies per record (e.g. Wikimedia Commons photos, whose licenses are on each imageRef).",
+          "oneOf": [{ "$ref": "defs.schema.json#/$defs/licenseId" }, { "type": "null" }]
+        },
+        "retrieved_at": {
+          "description": "When the data was downloaded, or null for sources that aren't downloaded (e.g. manual overrides).",
+          "oneOf": [{ "$ref": "defs.schema.json#/$defs/timestamp" }, { "type": "null" }]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aircraft-lineage.example/contract/manifest.schema.json",
+  "title": "Manifest",
+  "description": "Describes a published dataset: the contract version it follows, what produced it and when, and how complete it is. The app loads this file first and refuses data outside its compatibility line.",
+  "x-contract-status": "stable",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["contract_version", "producer", "generated_at", "data_as_of", "counts", "coverage"],
+  "properties": {
+    "contract_version": {
+      "description": "Contract version the dataset follows, copied from contract/VERSION. Plain MAJOR.MINOR.PATCH with no pre-release or build suffix.",
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$",
+      "maxLength": 32,
+      "examples": ["0.1.0"]
+    },
+    "producer": {
+      "description": "What generated the dataset. mock: the seeded mock generator; pipeline: the data pipeline exporter.",
+      "type": "string",
+      "enum": ["mock", "pipeline"]
+    },
+    "generated_at": {
+      "description": "When the dataset was generated.",
+      "$ref": "defs.schema.json#/$defs/timestamp"
+    },
+    "data_as_of": {
+      "description": "Latest month the data reflects, e.g. the newest registry snapshot ingested.",
+      "$ref": "defs.schema.json#/$defs/month"
+    },
+    "counts": {
+      "description": "Totals across the dataset, for loading indicators and sanity checks. Must match the published files.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["airlines", "airframes"],
+      "properties": {
+        "airlines": {
+          "description": "Number of entries in airlines.json.",
+          "$ref": "defs.schema.json#/$defs/count"
+        },
+        "airframes": {
+          "description": "Number of aircraft across all fleets/*.json files.",
+          "$ref": "defs.schema.json#/$defs/count"
+        }
+      }
+    },
+    "coverage": {
+      "description": "How complete the data is, so the UI can be honest about gaps. Null when coverage was not measured (e.g. mock data).",
+      "oneOf": [{ "$ref": "#/$defs/coverage" }, { "type": "null" }]
+    }
+  },
+  "$defs": {
+    "coverage": {
+      "title": "Coverage",
+      "description": "Completeness measures computed by the pipeline.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["history_since", "fill_rates"],
+      "properties": {
+        "history_since": {
+          "description": "Earliest month with operator history, or null if the dataset has none.",
+          "oneOf": [{ "$ref": "defs.schema.json#/$defs/month" }, { "type": "null" }]
+        },
+        "fill_rates": {
+          "description": "Share of records that have a value for a field, from 0 to 1, keyed by <entity>.<field> (e.g. airframe.built). Written in ascending key order.",
+          "type": "object",
+          "propertyNames": {
+            "pattern": "^[a-z][a-z0-9_]*\\.[a-z][a-z0-9_]*$",
+            "maxLength": 64
+          },
+          "additionalProperties": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "description": "Whole-document cases for schemas/manifest.schema.json. Each invalid case says why it must fail.",
+  "valid": [
+    {
+      "contract_version": "0.1.0",
+      "producer": "mock",
+      "generated_at": "2026-09-12T10:00:00Z",
+      "data_as_of": "2026-08",
+      "counts": { "airlines": 0, "airframes": 0 },
+      "coverage": null
+    },
+    {
+      "contract_version": "1.12.3",
+      "producer": "pipeline",
+      "generated_at": "2026-10-01T04:30:12.5Z",
+      "data_as_of": "2026-09",
+      "counts": { "airlines": 812, "airframes": 31240 },
+      "coverage": {
+        "history_since": "2017-01",
+        "fill_rates": { "airframe.built": 0.95, "airframe.msn": 1, "op_tenure.operator": 0.71 }
+      }
+    },
+    {
+      "contract_version": "0.1.0",
+      "producer": "pipeline",
+      "generated_at": "2026-10-01T04:30:12Z",
+      "data_as_of": "2026-09",
+      "counts": { "airlines": 3, "airframes": 10 },
+      "coverage": { "history_since": null, "fill_rates": {} }
+    }
+  ],
+  "invalid": [
+    {
+      "why": "coverage omitted instead of null",
+      "value": { "contract_version": "0.1.0", "producer": "mock", "generated_at": "2026-09-12T10:00:00Z", "data_as_of": "2026-08", "counts": { "airlines": 0, "airframes": 0 } }
+    },
+    {
+      "why": "contract_version missing patch component",
+      "value": { "contract_version": "0.1", "producer": "mock", "generated_at": "2026-09-12T10:00:00Z", "data_as_of": "2026-08", "counts": { "airlines": 0, "airframes": 0 }, "coverage": null }
+    },
+    {
+      "why": "contract_version with v prefix",
+      "value": { "contract_version": "v0.1.0", "producer": "mock", "generated_at": "2026-09-12T10:00:00Z", "data_as_of": "2026-08", "counts": { "airlines": 0, "airframes": 0 }, "coverage": null }
+    },
+    {
+      "why": "contract_version with pre-release suffix",
+      "value": { "contract_version": "0.1.0-draft", "producer": "mock", "generated_at": "2026-09-12T10:00:00Z", "data_as_of": "2026-08", "counts": { "airlines": 0, "airframes": 0 }, "coverage": null }
+    },
+    {
+      "why": "contract_version with leading zero",
+      "value": { "contract_version": "0.01.0", "producer": "mock", "generated_at": "2026-09-12T10:00:00Z", "data_as_of": "2026-08", "counts": { "airlines": 0, "airframes": 0 }, "coverage": null }
+    },
+    {
+      "why": "unknown producer",
+      "value": { "contract_version": "0.1.0", "producer": "example", "generated_at": "2026-09-12T10:00:00Z", "data_as_of": "2026-08", "counts": { "airlines": 0, "airframes": 0 }, "coverage": null }
+    },
+    {
+      "why": "generated_at not in UTC",
+      "value": { "contract_version": "0.1.0", "producer": "mock", "generated_at": "2026-09-12T10:00:00+02:00", "data_as_of": "2026-08", "counts": { "airlines": 0, "airframes": 0 }, "coverage": null }
+    },
+    {
+      "why": "data_as_of is a full date, not a month",
+      "value": { "contract_version": "0.1.0", "producer": "mock", "generated_at": "2026-09-12T10:00:00Z", "data_as_of": "2026-08-01", "counts": { "airlines": 0, "airframes": 0 }, "coverage": null }
+    },
+    {
+      "why": "negative count",
+      "value": { "contract_version": "0.1.0", "producer": "mock", "generated_at": "2026-09-12T10:00:00Z", "data_as_of": "2026-08", "counts": { "airlines": -1, "airframes": 0 }, "coverage": null }
+    },
+    {
+      "why": "unannounced field in counts",
+      "value": { "contract_version": "0.1.0", "producer": "mock", "generated_at": "2026-09-12T10:00:00Z", "data_as_of": "2026-08", "counts": { "airlines": 0, "airframes": 0, "photos": 0 }, "coverage": null }
+    },
+    {
+      "why": "unannounced top-level field",
+      "value": { "contract_version": "0.1.0", "producer": "mock", "generated_at": "2026-09-12T10:00:00Z", "data_as_of": "2026-08", "counts": { "airlines": 0, "airframes": 0 }, "coverage": null, "notes": "hi" }
+    },
+    {
+      "why": "fill rate above 1",
+      "value": { "contract_version": "0.1.0", "producer": "pipeline", "generated_at": "2026-09-12T10:00:00Z", "data_as_of": "2026-08", "counts": { "airlines": 0, "airframes": 0 }, "coverage": { "history_since": "2017-01", "fill_rates": { "airframe.built": 1.2 } } }
+    },
+    {
+      "why": "fill rate key without entity prefix",
+      "value": { "contract_version": "0.1.0", "producer": "pipeline", "generated_at": "2026-09-12T10:00:00Z", "data_as_of": "2026-08", "counts": { "airlines": 0, "airframes": 0 }, "coverage": { "history_since": "2017-01", "fill_rates": { "built": 0.9 } } }
+    },
+    {
+      "why": "fill rate key not lowercase",
+      "value": { "contract_version": "0.1.0", "producer": "pipeline", "generated_at": "2026-09-12T10:00:00Z", "data_as_of": "2026-08", "counts": { "airlines": 0, "airframes": 0 }, "coverage": { "history_since": "2017-01", "fill_rates": { "Airframe.built": 0.9 } } }
+    },
+    {
+      "why": "coverage missing fill_rates",
+      "value": { "contract_version": "0.1.0", "producer": "pipeline", "generated_at": "2026-09-12T10:00:00Z", "data_as_of": "2026-08", "counts": { "airlines": 0, "airframes": 0 }, "coverage": { "history_since": "2017-01" } }
+    }
+  ]
+}

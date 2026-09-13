@@ -1,0 +1,39 @@
+{
+  "sources": [
+    {
+      "id": "faa-registry",
+      "name": "FAA Releasable Aircraft Database",
+      "url": "https://www.faa.gov/licenses_certificates/aircraft_certification/aircraft_registry/releasable_aircraft_download",
+      "license": "LicenseRef-us-gov-public-domain",
+      "retrieved_at": "2026-09-01T06:00:00Z"
+    },
+    {
+      "id": "manual-override",
+      "name": "Manual corrections",
+      "url": null,
+      "license": null,
+      "retrieved_at": null
+    },
+    {
+      "id": "opensky-2026-08",
+      "name": "OpenSky Network aircraft database (2026-08 snapshot)",
+      "url": "https://opensky-network.org/datasets/metadata/",
+      "license": "LicenseRef-opensky",
+      "retrieved_at": "2026-09-01T06:12:00Z"
+    },
+    {
+      "id": "wikidata",
+      "name": "Wikidata",
+      "url": "https://www.wikidata.org/",
+      "license": "CC0-1.0",
+      "retrieved_at": "2026-09-01T06:20:00Z"
+    },
+    {
+      "id": "wikimedia-commons",
+      "name": "Wikimedia Commons",
+      "url": "https://commons.wikimedia.org/",
+      "license": null,
+      "retrieved_at": "2026-09-01T06:35:00Z"
+    }
+  ]
+}

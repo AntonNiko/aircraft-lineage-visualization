@@ -1,0 +1,46 @@
+{
+  "description": "Whole-document cases for schemas/sources.schema.json. Each invalid case says why it must fail.",
+  "valid": [
+    { "sources": [] },
+    {
+      "sources": [
+        { "id": "manual-override", "name": "Manual corrections", "url": null, "license": null, "retrieved_at": null },
+        { "id": "wikidata", "name": "Wikidata", "url": "https://www.wikidata.org/", "license": "CC0-1.0", "retrieved_at": "2026-09-01T06:20:00Z" }
+      ]
+    }
+  ],
+  "invalid": [
+    {
+      "why": "retrieved_at omitted instead of null",
+      "value": { "sources": [{ "id": "wikidata", "name": "Wikidata", "url": "https://www.wikidata.org/", "license": "CC0-1.0" }] }
+    },
+    {
+      "why": "id not a lowercase slug",
+      "value": { "sources": [{ "id": "WikiData", "name": "Wikidata", "url": "https://www.wikidata.org/", "license": "CC0-1.0", "retrieved_at": null }] }
+    },
+    {
+      "why": "url is http, not https",
+      "value": { "sources": [{ "id": "wikidata", "name": "Wikidata", "url": "http://www.wikidata.org/", "license": "CC0-1.0", "retrieved_at": null }] }
+    },
+    {
+      "why": "empty name",
+      "value": { "sources": [{ "id": "wikidata", "name": "", "url": null, "license": null, "retrieved_at": null }] }
+    },
+    {
+      "why": "license is not an SPDX-style identifier",
+      "value": { "sources": [{ "id": "wikidata", "name": "Wikidata", "url": null, "license": "CC0 1.0", "retrieved_at": null }] }
+    },
+    {
+      "why": "unannounced field on a source",
+      "value": { "sources": [{ "id": "wikidata", "name": "Wikidata", "url": null, "license": null, "retrieved_at": null, "kind": "knowledge_base" }] }
+    },
+    {
+      "why": "sources is an object keyed by id instead of an array",
+      "value": { "sources": { "wikidata": { "id": "wikidata", "name": "Wikidata", "url": null, "license": null, "retrieved_at": null } } }
+    },
+    {
+      "why": "sources key missing",
+      "value": {}
+    }
+  ]
+}

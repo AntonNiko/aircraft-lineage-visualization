@@ -86,7 +86,16 @@ The exact patterns live in `defs.schema.json`.
 | Confidence | number from 0 to 1 | `0.8` |
 | Count | integer ≥ 0 | `279` |
 
-When you add or change a definition in `defs.schema.json`, add valid and invalid values for it to `tests/defs.cases.json`. Patterns must not use lookarounds, so they behave the same in ajv (ECMAScript), `jsonschema` (Python `re`) and pydantic (Rust regex).
+Patterns must not use lookarounds, so they behave the same in ajv (ECMAScript), `jsonschema` (Python `re`) and pydantic (Rust regex).
+
+### Test cases
+
+Every schema has test cases in `tests/`:
+
+- **`defs.cases.json`:** valid and invalid values for each definition in `defs.schema.json`, keyed by definition name.
+- **`<name>.cases.json`:** whole documents for `<name>.schema.json`. `valid` is a list of documents; `invalid` is a list of `{ "why", "value" }` entries, where each value should break exactly the rule its `why` describes.
+
+Add cases whenever you add or change a schema. Some rules can't be expressed in JSON Schema, such as unique `id`s or sort order; those are checked by producers and tests, and each schema's `description` says which.
 
 ### Ordering and formatting
 
@@ -108,6 +117,7 @@ examples/
       └─ al-example-air.json
 ```
 
+- `minimal/` is the baseline dataset that each schema ticket extends; edge-case scenarios sit alongside it.
 - Folder names are kebab-case and describe the case.
 - Every file must validate. Tests load each folder as a complete dataset, and the mock generator merges them into its output.
 - Use fictional airlines and registrations unless the real case is the point, so examples don't read as claims about real aircraft.

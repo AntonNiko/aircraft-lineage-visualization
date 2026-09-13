@@ -132,7 +132,7 @@ Sketches:
 
 ```jsonc
 // manifest.json
-{ "contract_version": "0.1.0", "source": "mock" /* | "pipeline" */,
+{ "contract_version": "0.1.0", "producer": "mock" /* | "pipeline" */,
   "generated_at": "2026-09-12T10:00:00Z", "data_as_of": "2026-08",
   "counts": { "airlines": 812, "airframes": 31240 } }
 
