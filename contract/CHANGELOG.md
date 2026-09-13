@@ -9,3 +9,5 @@ Start an entry with **Breaking:** when it is a Major change.
 ### Added
 
 - Contract folder layout, schema conventions, versioning rules and change process.
+- `defs.schema.json` with shared definitions: `partialDate`, `month`, `timestamp`, `airlineId`, `airframeId`, `typeFamily`, `countryCode`, `region`, `confidence`, `count`, `httpsUrl`, `assetUrl`, `sourceId`, `sourceIds`, `licenseId` and `imageRef`.
+- `tests/defs.cases.json` with valid and invalid values for every definition.

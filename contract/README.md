@@ -12,6 +12,7 @@ contract/
 ├─ CHANGELOG.md   # every contract change, newest first
 ├─ schemas/       # JSON Schema files
 ├─ examples/      # hand-written edge-case datasets, one folder per scenario
+├─ tests/         # valid/invalid cases for schema definitions
 └─ mock/          # seeded mock data generator
 ```
 
@@ -84,6 +85,8 @@ The exact patterns live in `defs.schema.json`.
 | Region | fixed enum | `"eu"` |
 | Confidence | number from 0 to 1 | `0.8` |
 | Count | integer ≥ 0 | `279` |
+
+When you add or change a definition in `defs.schema.json`, add valid and invalid values for it to `tests/defs.cases.json`. Patterns must not use lookarounds, so they behave the same in ajv (ECMAScript), `jsonschema` (Python `re`) and pydantic (Rust regex).
 
 ### Ordering and formatting
 

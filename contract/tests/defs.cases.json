@@ -1,0 +1,132 @@
+{
+  "description": "Valid and invalid values for each definition in schemas/defs.schema.json. Each value is checked against {\"$ref\": \"defs.schema.json#/$defs/<def>\"}.",
+  "cases": {
+    "partialDate": {
+      "valid": ["2009", "2009-04", "2009-04-17", "1936-12-31", "2099-11-30", "2024-02-29", "2023-02-29", "1900-01-01"],
+      "invalid": ["09", "20091", "2009-4", "2009-13", "2009-00", "2009-04-31", "2009-02-30", "2009-04-00", "2009-04-17T00:00:00Z", "1899-12", "2100", "2009/04", " 2009", "2009-04-17 ", "", 2009, null]
+    },
+    "month": {
+      "valid": ["2026-08", "1990-01", "2000-12"],
+      "invalid": ["2026", "2026-8", "2026-13", "2026-00", "2026-08-01", "1899-12", "", null]
+    },
+    "timestamp": {
+      "valid": ["2026-09-12T10:00:00Z", "2026-09-12T23:59:59.123Z", "2026-09-12T00:00:00.123456Z"],
+      "invalid": ["2026-09-12T10:00:00", "2026-09-12T10:00:00+02:00", "2026-09-12 10:00:00Z", "2026-09-12", "2026-09-12T24:00:00Z", "2026-09-12T10:00:00.1234567Z", "2026-13-12T10:00:00Z", "", null]
+    },
+    "airlineId": {
+      "valid": ["al-lufthansa", "al-american-airlines", "al-2", "al-air-berlin-2"],
+      "invalid": ["lufthansa", "DLH", "al-", "al-Lufthansa", "al--lufthansa", "al-lufthansa-", "al_lufthansa", "al-luft hansa", "", null]
+    },
+    "airframeId": {
+      "valid": ["airbus-a320fam-4101", "boeing-737-29934", "dehavillandcanada-dhc8-4301", "bae-146-e3432"],
+      "invalid": ["airbus-a320fam", "airbus-a320fam-4101-x", "Airbus-a320fam-4101", "airbus_a320fam_4101", "airbus-a320fam-", "-a320fam-4101", "airbus--4101", "", null]
+    },
+    "typeFamily": {
+      "valid": ["a320fam", "737", "ejet"],
+      "invalid": ["A320fam", "e-jet", "a320 fam", "", null]
+    },
+    "countryCode": {
+      "valid": ["DE", "US", "GB"],
+      "invalid": ["de", "DEU", "D", "", null]
+    },
+    "region": {
+      "valid": ["af", "as", "eu", "me", "na", "oc", "sa"],
+      "invalid": ["EU", "europe", "an", "", null]
+    },
+    "confidence": {
+      "valid": [0, 0.5, 1, 1.0],
+      "invalid": [-0.01, 1.01, "0.5", null]
+    },
+    "count": {
+      "valid": [0, 1, 279],
+      "invalid": [-1, 1.5, "3", null]
+    },
+    "httpsUrl": {
+      "valid": ["https://commons.wikimedia.org/wiki/File:Example.jpg", "https://www.planespotters.net/photo/123/d-aiza"],
+      "invalid": ["http://example.com", "img/a.svg", "https://", "https://exa mple.com", "ftp://example.com", "", null]
+    },
+    "assetUrl": {
+      "valid": ["https://upload.wikimedia.org/example.jpg", "img/silhouettes/a320fam.svg", "_shared/placeholder.png"],
+      "invalid": ["/img/a.svg", "../img/a.svg", "http://example.com/a.jpg", "data:image/png;base64,AAAA", "javascript:alert(1)", "img/a b.svg", "", null]
+    },
+    "sourceId": {
+      "valid": ["opensky-2026-08", "faa-registry", "wikidata", "manual-override"],
+      "invalid": ["OpenSky", "opensky_2026", "-opensky", "opensky-", "", null]
+    },
+    "sourceIds": {
+      "valid": [["opensky-2026-08"], ["faa-registry", "opensky-2026-08"]],
+      "invalid": [[], ["faa-registry", "faa-registry"], ["Bad Id"], "faa-registry", null]
+    },
+    "licenseId": {
+      "valid": ["CC-BY-SA-4.0", "CC0-1.0", "CC-BY-2.0", "LicenseRef-planespotters"],
+      "invalid": ["CC BY-SA 4.0", "-CC0", "", null]
+    },
+    "imageRef": {
+      "valid": [
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/a/ab/Example.jpg",
+          "thumb_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Example.jpg/320px-Example.jpg",
+          "width": 4000,
+          "height": 2667,
+          "author": "Example Photographer",
+          "license": "CC-BY-SA-4.0",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Example.jpg",
+          "taken_at": "2019-06-02"
+        },
+        {
+          "url": "img/silhouettes/a320fam.svg",
+          "thumb_url": null,
+          "width": null,
+          "height": null,
+          "author": null,
+          "license": "CC0-1.0",
+          "source_url": null,
+          "taken_at": null
+        }
+      ],
+      "invalid": [
+        {
+          "url": "img/silhouettes/a320fam.svg",
+          "width": null,
+          "height": null,
+          "author": null,
+          "license": "CC0-1.0",
+          "source_url": null,
+          "taken_at": null
+        },
+        {
+          "url": "img/silhouettes/a320fam.svg",
+          "thumb_url": null,
+          "width": null,
+          "height": null,
+          "author": null,
+          "license": "CC0-1.0",
+          "source_url": null,
+          "taken_at": null,
+          "caption": "unexpected field"
+        },
+        {
+          "url": "img/silhouettes/a320fam.svg",
+          "thumb_url": null,
+          "width": 0,
+          "height": null,
+          "author": "",
+          "license": "CC0-1.0",
+          "source_url": null,
+          "taken_at": null
+        },
+        {
+          "url": "img/silhouettes/a320fam.svg",
+          "thumb_url": null,
+          "width": null,
+          "height": null,
+          "author": null,
+          "license": null,
+          "source_url": null,
+          "taken_at": "2019-13"
+        },
+        null
+      ]
+    }
+  }
+}

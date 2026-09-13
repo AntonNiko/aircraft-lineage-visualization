@@ -181,6 +181,7 @@ aircraft-lineage/
 ├─ contract/
 │  ├─ schemas/               # *.schema.json — single source of truth
 │  ├─ examples/              # hand-written edge-case shards (also used in tests)
+│  ├─ tests/                 # valid/invalid cases for schema definitions
 │  ├─ mock/                  # seeded mock generator (TypeScript, run with tsx)
 │  ├─ README.md              # conventions, versioning, change process
 │  ├─ VERSION                # current contract version
