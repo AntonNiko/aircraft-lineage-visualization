@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aircraft-lineage.example/contract/fleet.schema.json",
+  "title": "Fleet",
+  "description": "One airline's current fleet, published as fleets/{airline_id}.json and loaded when the user zooms into that airline. Rules JSON Schema can't check: airline_id matches the file name and an entry in airlines.json; as_of equals manifest.data_as_of; the aircraft count and per-family counts match that airline's fleet_count and family_counts; an airframe appears in at most one fleet file.",
+  "x-contract-status": "stable",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["airline_id", "as_of", "aircraft"],
+  "properties": {
+    "airline_id": {
+      "description": "Airline this fleet belongs to.",
+      "$ref": "defs.schema.json#/$defs/airlineId"
+    },
+    "as_of": {
+      "description": "Month the fleet reflects.",
+      "$ref": "defs.schema.json#/$defs/month"
+    },
+    "aircraft": {
+      "description": "Aircraft in the fleet, in circle-pack slot order: family ascending, then built ascending, then reg ascending, then id ascending. Null built and reg values sort last. The app fills pre-laid-out slots in this order, so it must be stable.",
+      "type": "array",
+      "items": { "$ref": "#/$defs/aircraft" }
+    }
+  },
+  "$defs": {
+    "aircraft": {
+      "title": "FleetAircraft",
+      "description": "One aircraft as shown in the circle pack. Full history lives in aircraft/{id}.json.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "reg", "type_code", "family", "msn", "built", "status", "previous_operator_count", "thumb"],
+      "properties": {
+        "id": {
+          "description": "Stable airframe ID, {manufacturer}-{programme}-{msn}. Stays the same across re-registrations and operator changes.",
+          "$ref": "defs.schema.json#/$defs/airframeId"
+        },
+        "reg": {
+          "description": "Current registration, or null if unknown.",
+          "oneOf": [{ "$ref": "defs.schema.json#/$defs/registration" }, { "type": "null" }]
+        },
+        "type_code": {
+          "description": "ICAO type designator for the exact variant, or null if unknown.",
+          "oneOf": [{ "$ref": "defs.schema.json#/$defs/icaoTypeCode" }, { "type": "null" }]
+        },
+        "family": {
+          "description": "Type family the aircraft is grouped under. Never null: aircraft whose type can't be mapped use the family 'other'.",
+          "$ref": "defs.schema.json#/$defs/typeFamily"
+        },
+        "msn": {
+          "description": "Manufacturer serial number as published.",
+          "$ref": "defs.schema.json#/$defs/msn"
+        },
+        "built": {
+          "description": "When the aircraft was built (first flight or delivery, whichever is known first), or null if unknown.",
+          "oneOf": [{ "$ref": "defs.schema.json#/$defs/partialDate" }, { "type": "null" }]
+        },
+        "status": {
+          "description": "Status within this fleet, or null if unknown. active: in service; stored: parked or in long-term storage. Consumers must handle values added later.",
+          "oneOf": [{ "type": "string", "enum": ["active", "stored"] }, { "type": "null" }]
+        },
+        "previous_operator_count": {
+          "description": "Number of operators before the current one. 0 means the aircraft is known to have had no earlier operator; null means its history is unknown.",
+          "oneOf": [{ "$ref": "defs.schema.json#/$defs/count" }, { "type": "null" }]
+        },
+        "thumb": {
+          "description": "Photo of the aircraft for the circle pack, or null if none is available. The app falls back to a family silhouette.",
+          "oneOf": [{ "$ref": "defs.schema.json#/$defs/imageRef" }, { "type": "null" }]
+        }
+      }
+    }
+  }
+}

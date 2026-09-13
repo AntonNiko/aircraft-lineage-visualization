@@ -80,7 +80,12 @@ The exact patterns live in `defs.schema.json`.
 | Timestamp | RFC 3339, UTC with `Z` | `"2026-09-12T10:00:00Z"` |
 | Airline ID | `al-` + lowercase slug; pipeline-assigned, never an ICAO code | `"al-lufthansa"` |
 | Airframe ID | `{manufacturer}-{programme}-{msn}`, lowercase | `"airbus-a320fam-4101"` |
-| Type family | lowercase slug | `"a320fam"` |
+| Type family | lowercase slug; `other` for types that can't be mapped | `"a320fam"` |
+| ICAO type code | Doc 8643 designator | `"A20N"` |
+| Registration | uppercase, hyphen-separated groups | `"D-AIZA"` |
+| MSN | as published, original case and punctuation | `"E3432"` |
+| ICAO / IATA airline code | 3 letters / 2 letters or digits; never an identity | `"DLH"` / `"LH"` |
+| Wikidata item | `Q` + number | `"Q9325"` |
 | Country | ISO 3166-1 alpha-2 | `"DE"` |
 | Region | fixed enum | `"eu"` |
 | Confidence | number from 0 to 1 | `0.8` |

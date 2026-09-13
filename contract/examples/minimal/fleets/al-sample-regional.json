@@ -1,0 +1,17 @@
+{
+  "airline_id": "al-sample-regional",
+  "as_of": "2026-08",
+  "aircraft": [
+    {
+      "id": "embraer-ejet-19000123",
+      "reg": "SE-RXA",
+      "type_code": "E190",
+      "family": "ejet",
+      "msn": "19000123",
+      "built": "2008-05",
+      "status": "active",
+      "previous_operator_count": 2,
+      "thumb": null
+    }
+  ]
+}

@@ -1,0 +1,401 @@
+{
+  "description": "Whole-document cases for schemas/fleet.schema.json. Each invalid case says why it must fail. Slot order and cross-file consistency are checked by dataset tests, not the schema.",
+  "valid": [
+    {
+      "airline_id": "al-example-air",
+      "as_of": "2026-08",
+      "aircraft": []
+    },
+    {
+      "airline_id": "al-example-air",
+      "as_of": "2026-08",
+      "aircraft": [
+        {
+          "id": "airbus-a320fam-9001",
+          "reg": "D-AXAA",
+          "type_code": "A320",
+          "family": "a320fam",
+          "msn": "9001",
+          "built": "2012-03",
+          "status": "active",
+          "previous_operator_count": 0,
+          "thumb": null
+        }
+      ]
+    },
+    {
+      "airline_id": "al-example-air",
+      "as_of": "2026-08",
+      "aircraft": [
+        {
+          "id": "airbus-a320fam-9001",
+          "reg": "D-AXAA",
+          "type_code": "A320",
+          "family": "a320fam",
+          "msn": "9001",
+          "built": "2012-03",
+          "status": "active",
+          "previous_operator_count": 0,
+          "thumb": null
+        },
+        {
+          "id": "airbus-a320fam-9002",
+          "reg": "D-AXAB",
+          "type_code": "A21N",
+          "family": "a320fam",
+          "msn": "9002",
+          "built": "2019",
+          "status": "stored",
+          "previous_operator_count": 3,
+          "thumb": {
+            "url": "https://upload.wikimedia.org/example.jpg",
+            "thumb_url": null,
+            "width": 1600,
+            "height": 1067,
+            "author": "Example Photographer",
+            "license": "CC-BY-SA-4.0",
+            "source_url": "https://commons.wikimedia.org/wiki/File:Example.jpg",
+            "taken_at": "2019-06"
+          }
+        }
+      ]
+    },
+    {
+      "airline_id": "al-example-air",
+      "as_of": "2026-08",
+      "aircraft": [
+        {
+          "id": "bae-146-e3432",
+          "reg": null,
+          "type_code": null,
+          "family": "other",
+          "msn": "E3432",
+          "built": null,
+          "status": null,
+          "previous_operator_count": null,
+          "thumb": null
+        }
+      ]
+    }
+  ],
+  "invalid": [
+    {
+      "why": "aircraft field omitted instead of null",
+      "value": {
+        "airline_id": "al-example-air",
+        "as_of": "2026-08",
+        "aircraft": [
+          {
+            "id": "airbus-a320fam-9001",
+            "reg": "D-AXAA",
+            "type_code": "A320",
+            "family": "a320fam",
+            "msn": "9001",
+            "built": "2012-03",
+            "status": "active",
+            "previous_operator_count": 0
+          }
+        ]
+      }
+    },
+    {
+      "why": "airline_id is null",
+      "value": {
+        "airline_id": null,
+        "as_of": "2026-08",
+        "aircraft": [
+          {
+            "id": "airbus-a320fam-9001",
+            "reg": "D-AXAA",
+            "type_code": "A320",
+            "family": "a320fam",
+            "msn": "9001",
+            "built": "2012-03",
+            "status": "active",
+            "previous_operator_count": 0,
+            "thumb": null
+          }
+        ]
+      }
+    },
+    {
+      "why": "as_of is a full date",
+      "value": {
+        "airline_id": "al-example-air",
+        "as_of": "2026-08-01",
+        "aircraft": [
+          {
+            "id": "airbus-a320fam-9001",
+            "reg": "D-AXAA",
+            "type_code": "A320",
+            "family": "a320fam",
+            "msn": "9001",
+            "built": "2012-03",
+            "status": "active",
+            "previous_operator_count": 0,
+            "thumb": null
+          }
+        ]
+      }
+    },
+    {
+      "why": "aircraft is null instead of []",
+      "value": {
+        "airline_id": "al-example-air",
+        "as_of": "2026-08",
+        "aircraft": null
+      }
+    },
+    {
+      "why": "airframe id has only two segments",
+      "value": {
+        "airline_id": "al-example-air",
+        "as_of": "2026-08",
+        "aircraft": [
+          {
+            "id": "airbus-9001",
+            "reg": "D-AXAA",
+            "type_code": "A320",
+            "family": "a320fam",
+            "msn": "9001",
+            "built": "2012-03",
+            "status": "active",
+            "previous_operator_count": 0,
+            "thumb": null
+          }
+        ]
+      }
+    },
+    {
+      "why": "registration is lowercase",
+      "value": {
+        "airline_id": "al-example-air",
+        "as_of": "2026-08",
+        "aircraft": [
+          {
+            "id": "airbus-a320fam-9001",
+            "reg": "d-axaa",
+            "type_code": "A320",
+            "family": "a320fam",
+            "msn": "9001",
+            "built": "2012-03",
+            "status": "active",
+            "previous_operator_count": 0,
+            "thumb": null
+          }
+        ]
+      }
+    },
+    {
+      "why": "type_code is a marketing name",
+      "value": {
+        "airline_id": "al-example-air",
+        "as_of": "2026-08",
+        "aircraft": [
+          {
+            "id": "airbus-a320fam-9001",
+            "reg": "D-AXAA",
+            "type_code": "A320neo",
+            "family": "a320fam",
+            "msn": "9001",
+            "built": "2012-03",
+            "status": "active",
+            "previous_operator_count": 0,
+            "thumb": null
+          }
+        ]
+      }
+    },
+    {
+      "why": "family is null; unmapped types use 'other'",
+      "value": {
+        "airline_id": "al-example-air",
+        "as_of": "2026-08",
+        "aircraft": [
+          {
+            "id": "airbus-a320fam-9001",
+            "reg": "D-AXAA",
+            "type_code": "A320",
+            "family": null,
+            "msn": "9001",
+            "built": "2012-03",
+            "status": "active",
+            "previous_operator_count": 0,
+            "thumb": null
+          }
+        ]
+      }
+    },
+    {
+      "why": "msn is null",
+      "value": {
+        "airline_id": "al-example-air",
+        "as_of": "2026-08",
+        "aircraft": [
+          {
+            "id": "airbus-a320fam-9001",
+            "reg": "D-AXAA",
+            "type_code": "A320",
+            "family": "a320fam",
+            "msn": null,
+            "built": "2012-03",
+            "status": "active",
+            "previous_operator_count": 0,
+            "thumb": null
+          }
+        ]
+      }
+    },
+    {
+      "why": "msn has surrounding whitespace",
+      "value": {
+        "airline_id": "al-example-air",
+        "as_of": "2026-08",
+        "aircraft": [
+          {
+            "id": "airbus-a320fam-9001",
+            "reg": "D-AXAA",
+            "type_code": "A320",
+            "family": "a320fam",
+            "msn": " 9001",
+            "built": "2012-03",
+            "status": "active",
+            "previous_operator_count": 0,
+            "thumb": null
+          }
+        ]
+      }
+    },
+    {
+      "why": "built has an impossible month",
+      "value": {
+        "airline_id": "al-example-air",
+        "as_of": "2026-08",
+        "aircraft": [
+          {
+            "id": "airbus-a320fam-9001",
+            "reg": "D-AXAA",
+            "type_code": "A320",
+            "family": "a320fam",
+            "msn": "9001",
+            "built": "2012-13",
+            "status": "active",
+            "previous_operator_count": 0,
+            "thumb": null
+          }
+        ]
+      }
+    },
+    {
+      "why": "status not in enum",
+      "value": {
+        "airline_id": "al-example-air",
+        "as_of": "2026-08",
+        "aircraft": [
+          {
+            "id": "airbus-a320fam-9001",
+            "reg": "D-AXAA",
+            "type_code": "A320",
+            "family": "a320fam",
+            "msn": "9001",
+            "built": "2012-03",
+            "status": "scrapped",
+            "previous_operator_count": 0,
+            "thumb": null
+          }
+        ]
+      }
+    },
+    {
+      "why": "previous_operator_count is negative",
+      "value": {
+        "airline_id": "al-example-air",
+        "as_of": "2026-08",
+        "aircraft": [
+          {
+            "id": "airbus-a320fam-9001",
+            "reg": "D-AXAA",
+            "type_code": "A320",
+            "family": "a320fam",
+            "msn": "9001",
+            "built": "2012-03",
+            "status": "active",
+            "previous_operator_count": -1,
+            "thumb": null
+          }
+        ]
+      }
+    },
+    {
+      "why": "thumb has an http source_url",
+      "value": {
+        "airline_id": "al-example-air",
+        "as_of": "2026-08",
+        "aircraft": [
+          {
+            "id": "airbus-a320fam-9001",
+            "reg": "D-AXAA",
+            "type_code": "A320",
+            "family": "a320fam",
+            "msn": "9001",
+            "built": "2012-03",
+            "status": "active",
+            "previous_operator_count": 0,
+            "thumb": {
+              "url": "https://upload.wikimedia.org/example.jpg",
+              "thumb_url": null,
+              "width": 1600,
+              "height": 1067,
+              "author": "Example Photographer",
+              "license": "CC-BY-SA-4.0",
+              "source_url": "http://commons.wikimedia.org/x",
+              "taken_at": "2019-06"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "why": "unannounced field on an aircraft",
+      "value": {
+        "airline_id": "al-example-air",
+        "as_of": "2026-08",
+        "aircraft": [
+          {
+            "id": "airbus-a320fam-9001",
+            "reg": "D-AXAA",
+            "type_code": "A320",
+            "family": "a320fam",
+            "msn": "9001",
+            "built": "2012-03",
+            "status": "active",
+            "previous_operator_count": 0,
+            "thumb": null,
+            "seats": 180
+          }
+        ]
+      }
+    },
+    {
+      "why": "unannounced top-level field",
+      "value": {
+        "airline_id": "al-example-air",
+        "as_of": "2026-08",
+        "aircraft": [
+          {
+            "id": "airbus-a320fam-9001",
+            "reg": "D-AXAA",
+            "type_code": "A320",
+            "family": "a320fam",
+            "msn": "9001",
+            "built": "2012-03",
+            "status": "active",
+            "previous_operator_count": 0,
+            "thumb": null
+          }
+        ],
+        "airline_name": "Example Air"
+      }
+    }
+  ]
+}

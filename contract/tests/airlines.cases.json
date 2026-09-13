@@ -1,0 +1,796 @@
+{
+  "description": "Whole-document cases for schemas/airlines.schema.json. Each invalid case says why it must fail. The family_counts-sums-to-fleet_count invariant is checked by dataset tests, not the schema.",
+  "valid": [
+    {
+      "airlines": []
+    },
+    {
+      "airlines": [
+        {
+          "id": "al-example-air",
+          "name": "Example Air",
+          "wikidata_qid": "Q123456",
+          "icao": "XEA",
+          "iata": "X7",
+          "country": "DE",
+          "region": "eu",
+          "founded": "1998-04",
+          "ceased": null,
+          "successor_id": null,
+          "logo": {
+            "url": "img/logos/al-example-air.svg",
+            "thumb_url": null,
+            "width": null,
+            "height": null,
+            "author": null,
+            "license": "CC0-1.0",
+            "source_url": null,
+            "taken_at": null
+          },
+          "fleet_count": 3,
+          "family_counts": {
+            "a320fam": 2,
+            "a350": 1
+          }
+        }
+      ]
+    },
+    {
+      "airlines": [
+        {
+          "id": "al-example-air",
+          "name": "Example Air",
+          "wikidata_qid": "Q123456",
+          "icao": "XEA",
+          "iata": "X7",
+          "country": "DE",
+          "region": "eu",
+          "founded": "1998-04",
+          "ceased": null,
+          "successor_id": null,
+          "logo": {
+            "url": "img/logos/al-example-air.svg",
+            "thumb_url": null,
+            "width": null,
+            "height": null,
+            "author": null,
+            "license": "CC0-1.0",
+            "source_url": null,
+            "taken_at": null
+          },
+          "fleet_count": 3,
+          "family_counts": {
+            "a320fam": 2,
+            "a350": 1
+          }
+        },
+        {
+          "id": "al-old-example",
+          "name": "Old Example",
+          "wikidata_qid": "Q123456",
+          "icao": "XEA",
+          "iata": "X7",
+          "country": "DE",
+          "region": "eu",
+          "founded": "1998-04",
+          "ceased": "2019-10",
+          "successor_id": "al-example-air",
+          "logo": {
+            "url": "img/logos/al-example-air.svg",
+            "thumb_url": null,
+            "width": null,
+            "height": null,
+            "author": null,
+            "license": "CC0-1.0",
+            "source_url": null,
+            "taken_at": null
+          },
+          "fleet_count": 0,
+          "family_counts": {}
+        }
+      ]
+    },
+    {
+      "airlines": [
+        {
+          "id": "al-unmatched-operator",
+          "name": "UNMATCHED OPERATOR GMBH",
+          "wikidata_qid": null,
+          "icao": null,
+          "iata": null,
+          "country": null,
+          "region": null,
+          "founded": null,
+          "ceased": null,
+          "successor_id": null,
+          "logo": null,
+          "fleet_count": 3,
+          "family_counts": {
+            "a320fam": 2,
+            "a350": 1
+          }
+        }
+      ]
+    }
+  ],
+  "invalid": [
+    {
+      "why": "airline field omitted instead of null",
+      "value": {
+        "airlines": [
+          {
+            "id": "al-example-air",
+            "name": "Example Air",
+            "wikidata_qid": "Q123456",
+            "icao": "XEA",
+            "country": "DE",
+            "region": "eu",
+            "founded": "1998-04",
+            "ceased": null,
+            "successor_id": null,
+            "logo": {
+              "url": "img/logos/al-example-air.svg",
+              "thumb_url": null,
+              "width": null,
+              "height": null,
+              "author": null,
+              "license": "CC0-1.0",
+              "source_url": null,
+              "taken_at": null
+            },
+            "fleet_count": 3,
+            "family_counts": {
+              "a320fam": 2,
+              "a350": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "why": "id is an ICAO code, not an al- slug",
+      "value": {
+        "airlines": [
+          {
+            "id": "DLH",
+            "name": "Example Air",
+            "wikidata_qid": "Q123456",
+            "icao": "XEA",
+            "iata": "X7",
+            "country": "DE",
+            "region": "eu",
+            "founded": "1998-04",
+            "ceased": null,
+            "successor_id": null,
+            "logo": {
+              "url": "img/logos/al-example-air.svg",
+              "thumb_url": null,
+              "width": null,
+              "height": null,
+              "author": null,
+              "license": "CC0-1.0",
+              "source_url": null,
+              "taken_at": null
+            },
+            "fleet_count": 3,
+            "family_counts": {
+              "a320fam": 2,
+              "a350": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "why": "empty name",
+      "value": {
+        "airlines": [
+          {
+            "id": "al-example-air",
+            "name": "",
+            "wikidata_qid": "Q123456",
+            "icao": "XEA",
+            "iata": "X7",
+            "country": "DE",
+            "region": "eu",
+            "founded": "1998-04",
+            "ceased": null,
+            "successor_id": null,
+            "logo": {
+              "url": "img/logos/al-example-air.svg",
+              "thumb_url": null,
+              "width": null,
+              "height": null,
+              "author": null,
+              "license": "CC0-1.0",
+              "source_url": null,
+              "taken_at": null
+            },
+            "fleet_count": 3,
+            "family_counts": {
+              "a320fam": 2,
+              "a350": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "why": "name is null",
+      "value": {
+        "airlines": [
+          {
+            "id": "al-example-air",
+            "name": null,
+            "wikidata_qid": "Q123456",
+            "icao": "XEA",
+            "iata": "X7",
+            "country": "DE",
+            "region": "eu",
+            "founded": "1998-04",
+            "ceased": null,
+            "successor_id": null,
+            "logo": {
+              "url": "img/logos/al-example-air.svg",
+              "thumb_url": null,
+              "width": null,
+              "height": null,
+              "author": null,
+              "license": "CC0-1.0",
+              "source_url": null,
+              "taken_at": null
+            },
+            "fleet_count": 3,
+            "family_counts": {
+              "a320fam": 2,
+              "a350": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "why": "wikidata_qid is a property ID, not an item",
+      "value": {
+        "airlines": [
+          {
+            "id": "al-example-air",
+            "name": "Example Air",
+            "wikidata_qid": "P154",
+            "icao": "XEA",
+            "iata": "X7",
+            "country": "DE",
+            "region": "eu",
+            "founded": "1998-04",
+            "ceased": null,
+            "successor_id": null,
+            "logo": {
+              "url": "img/logos/al-example-air.svg",
+              "thumb_url": null,
+              "width": null,
+              "height": null,
+              "author": null,
+              "license": "CC0-1.0",
+              "source_url": null,
+              "taken_at": null
+            },
+            "fleet_count": 3,
+            "family_counts": {
+              "a320fam": 2,
+              "a350": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "why": "icao is lowercase",
+      "value": {
+        "airlines": [
+          {
+            "id": "al-example-air",
+            "name": "Example Air",
+            "wikidata_qid": "Q123456",
+            "icao": "xea",
+            "iata": "X7",
+            "country": "DE",
+            "region": "eu",
+            "founded": "1998-04",
+            "ceased": null,
+            "successor_id": null,
+            "logo": {
+              "url": "img/logos/al-example-air.svg",
+              "thumb_url": null,
+              "width": null,
+              "height": null,
+              "author": null,
+              "license": "CC0-1.0",
+              "source_url": null,
+              "taken_at": null
+            },
+            "fleet_count": 3,
+            "family_counts": {
+              "a320fam": 2,
+              "a350": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "why": "iata has three characters",
+      "value": {
+        "airlines": [
+          {
+            "id": "al-example-air",
+            "name": "Example Air",
+            "wikidata_qid": "Q123456",
+            "icao": "XEA",
+            "iata": "X7X",
+            "country": "DE",
+            "region": "eu",
+            "founded": "1998-04",
+            "ceased": null,
+            "successor_id": null,
+            "logo": {
+              "url": "img/logos/al-example-air.svg",
+              "thumb_url": null,
+              "width": null,
+              "height": null,
+              "author": null,
+              "license": "CC0-1.0",
+              "source_url": null,
+              "taken_at": null
+            },
+            "fleet_count": 3,
+            "family_counts": {
+              "a320fam": 2,
+              "a350": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "why": "country is alpha-3",
+      "value": {
+        "airlines": [
+          {
+            "id": "al-example-air",
+            "name": "Example Air",
+            "wikidata_qid": "Q123456",
+            "icao": "XEA",
+            "iata": "X7",
+            "country": "DEU",
+            "region": "eu",
+            "founded": "1998-04",
+            "ceased": null,
+            "successor_id": null,
+            "logo": {
+              "url": "img/logos/al-example-air.svg",
+              "thumb_url": null,
+              "width": null,
+              "height": null,
+              "author": null,
+              "license": "CC0-1.0",
+              "source_url": null,
+              "taken_at": null
+            },
+            "fleet_count": 3,
+            "family_counts": {
+              "a320fam": 2,
+              "a350": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "why": "region not in enum",
+      "value": {
+        "airlines": [
+          {
+            "id": "al-example-air",
+            "name": "Example Air",
+            "wikidata_qid": "Q123456",
+            "icao": "XEA",
+            "iata": "X7",
+            "country": "DE",
+            "region": "europe",
+            "founded": "1998-04",
+            "ceased": null,
+            "successor_id": null,
+            "logo": {
+              "url": "img/logos/al-example-air.svg",
+              "thumb_url": null,
+              "width": null,
+              "height": null,
+              "author": null,
+              "license": "CC0-1.0",
+              "source_url": null,
+              "taken_at": null
+            },
+            "fleet_count": 3,
+            "family_counts": {
+              "a320fam": 2,
+              "a350": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "why": "founded is a full timestamp",
+      "value": {
+        "airlines": [
+          {
+            "id": "al-example-air",
+            "name": "Example Air",
+            "wikidata_qid": "Q123456",
+            "icao": "XEA",
+            "iata": "X7",
+            "country": "DE",
+            "region": "eu",
+            "founded": "1998-04-01T00:00:00Z",
+            "ceased": null,
+            "successor_id": null,
+            "logo": {
+              "url": "img/logos/al-example-air.svg",
+              "thumb_url": null,
+              "width": null,
+              "height": null,
+              "author": null,
+              "license": "CC0-1.0",
+              "source_url": null,
+              "taken_at": null
+            },
+            "fleet_count": 3,
+            "family_counts": {
+              "a320fam": 2,
+              "a350": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "why": "successor_id is a name, not an ID",
+      "value": {
+        "airlines": [
+          {
+            "id": "al-example-air",
+            "name": "Example Air",
+            "wikidata_qid": "Q123456",
+            "icao": "XEA",
+            "iata": "X7",
+            "country": "DE",
+            "region": "eu",
+            "founded": "1998-04",
+            "ceased": null,
+            "successor_id": "Example Air",
+            "logo": {
+              "url": "img/logos/al-example-air.svg",
+              "thumb_url": null,
+              "width": null,
+              "height": null,
+              "author": null,
+              "license": "CC0-1.0",
+              "source_url": null,
+              "taken_at": null
+            },
+            "fleet_count": 3,
+            "family_counts": {
+              "a320fam": 2,
+              "a350": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "why": "logo missing license",
+      "value": {
+        "airlines": [
+          {
+            "id": "al-example-air",
+            "name": "Example Air",
+            "wikidata_qid": "Q123456",
+            "icao": "XEA",
+            "iata": "X7",
+            "country": "DE",
+            "region": "eu",
+            "founded": "1998-04",
+            "ceased": null,
+            "successor_id": null,
+            "logo": {
+              "url": "img/logos/al-example-air.svg",
+              "thumb_url": null,
+              "width": null,
+              "height": null,
+              "author": null,
+              "source_url": null,
+              "taken_at": null
+            },
+            "fleet_count": 3,
+            "family_counts": {
+              "a320fam": 2,
+              "a350": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "why": "fleet_count is negative",
+      "value": {
+        "airlines": [
+          {
+            "id": "al-example-air",
+            "name": "Example Air",
+            "wikidata_qid": "Q123456",
+            "icao": "XEA",
+            "iata": "X7",
+            "country": "DE",
+            "region": "eu",
+            "founded": "1998-04",
+            "ceased": null,
+            "successor_id": null,
+            "logo": {
+              "url": "img/logos/al-example-air.svg",
+              "thumb_url": null,
+              "width": null,
+              "height": null,
+              "author": null,
+              "license": "CC0-1.0",
+              "source_url": null,
+              "taken_at": null
+            },
+            "fleet_count": -1,
+            "family_counts": {
+              "a320fam": 2,
+              "a350": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "why": "fleet_count is null",
+      "value": {
+        "airlines": [
+          {
+            "id": "al-example-air",
+            "name": "Example Air",
+            "wikidata_qid": "Q123456",
+            "icao": "XEA",
+            "iata": "X7",
+            "country": "DE",
+            "region": "eu",
+            "founded": "1998-04",
+            "ceased": null,
+            "successor_id": null,
+            "logo": {
+              "url": "img/logos/al-example-air.svg",
+              "thumb_url": null,
+              "width": null,
+              "height": null,
+              "author": null,
+              "license": "CC0-1.0",
+              "source_url": null,
+              "taken_at": null
+            },
+            "fleet_count": null,
+            "family_counts": {
+              "a320fam": 2,
+              "a350": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "why": "family_counts has a zero entry",
+      "value": {
+        "airlines": [
+          {
+            "id": "al-example-air",
+            "name": "Example Air",
+            "wikidata_qid": "Q123456",
+            "icao": "XEA",
+            "iata": "X7",
+            "country": "DE",
+            "region": "eu",
+            "founded": "1998-04",
+            "ceased": null,
+            "successor_id": null,
+            "logo": {
+              "url": "img/logos/al-example-air.svg",
+              "thumb_url": null,
+              "width": null,
+              "height": null,
+              "author": null,
+              "license": "CC0-1.0",
+              "source_url": null,
+              "taken_at": null
+            },
+            "fleet_count": 3,
+            "family_counts": {
+              "a320fam": 2,
+              "a350": 1,
+              "ejet": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "why": "family_counts key is not a family slug",
+      "value": {
+        "airlines": [
+          {
+            "id": "al-example-air",
+            "name": "Example Air",
+            "wikidata_qid": "Q123456",
+            "icao": "XEA",
+            "iata": "X7",
+            "country": "DE",
+            "region": "eu",
+            "founded": "1998-04",
+            "ceased": null,
+            "successor_id": null,
+            "logo": {
+              "url": "img/logos/al-example-air.svg",
+              "thumb_url": null,
+              "width": null,
+              "height": null,
+              "author": null,
+              "license": "CC0-1.0",
+              "source_url": null,
+              "taken_at": null
+            },
+            "fleet_count": 3,
+            "family_counts": {
+              "a320fam": 2,
+              "a350": 1,
+              "A320 Family": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "why": "family_counts value is not an integer",
+      "value": {
+        "airlines": [
+          {
+            "id": "al-example-air",
+            "name": "Example Air",
+            "wikidata_qid": "Q123456",
+            "icao": "XEA",
+            "iata": "X7",
+            "country": "DE",
+            "region": "eu",
+            "founded": "1998-04",
+            "ceased": null,
+            "successor_id": null,
+            "logo": {
+              "url": "img/logos/al-example-air.svg",
+              "thumb_url": null,
+              "width": null,
+              "height": null,
+              "author": null,
+              "license": "CC0-1.0",
+              "source_url": null,
+              "taken_at": null
+            },
+            "fleet_count": 3,
+            "family_counts": {
+              "a320fam": 2,
+              "a350": 1.5
+            }
+          }
+        ]
+      }
+    },
+    {
+      "why": "family_counts is null",
+      "value": {
+        "airlines": [
+          {
+            "id": "al-example-air",
+            "name": "Example Air",
+            "wikidata_qid": "Q123456",
+            "icao": "XEA",
+            "iata": "X7",
+            "country": "DE",
+            "region": "eu",
+            "founded": "1998-04",
+            "ceased": null,
+            "successor_id": null,
+            "logo": {
+              "url": "img/logos/al-example-air.svg",
+              "thumb_url": null,
+              "width": null,
+              "height": null,
+              "author": null,
+              "license": "CC0-1.0",
+              "source_url": null,
+              "taken_at": null
+            },
+            "fleet_count": 3,
+            "family_counts": null
+          }
+        ]
+      }
+    },
+    {
+      "why": "unannounced field on an airline",
+      "value": {
+        "airlines": [
+          {
+            "id": "al-example-air",
+            "name": "Example Air",
+            "wikidata_qid": "Q123456",
+            "icao": "XEA",
+            "iata": "X7",
+            "country": "DE",
+            "region": "eu",
+            "founded": "1998-04",
+            "ceased": null,
+            "successor_id": null,
+            "logo": {
+              "url": "img/logos/al-example-air.svg",
+              "thumb_url": null,
+              "width": null,
+              "height": null,
+              "author": null,
+              "license": "CC0-1.0",
+              "source_url": null,
+              "taken_at": null
+            },
+            "fleet_count": 3,
+            "family_counts": {
+              "a320fam": 2,
+              "a350": 1
+            },
+            "callsign": "EXAMPLE"
+          }
+        ]
+      }
+    },
+    {
+      "why": "airlines keyed by id instead of an array",
+      "value": {
+        "airlines": {
+          "al-example-air": {
+            "id": "al-example-air",
+            "name": "Example Air",
+            "wikidata_qid": "Q123456",
+            "icao": "XEA",
+            "iata": "X7",
+            "country": "DE",
+            "region": "eu",
+            "founded": "1998-04",
+            "ceased": null,
+            "successor_id": null,
+            "logo": {
+              "url": "img/logos/al-example-air.svg",
+              "thumb_url": null,
+              "width": null,
+              "height": null,
+              "author": null,
+              "license": "CC0-1.0",
+              "source_url": null,
+              "taken_at": null
+            },
+            "fleet_count": 3,
+            "family_counts": {
+              "a320fam": 2,
+              "a350": 1
+            }
+          }
+        }
+      }
+    }
+  ]
+}

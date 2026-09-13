@@ -1,0 +1,48 @@
+{
+  "airlines": [
+    {
+      "id": "al-example-air",
+      "name": "Example Air",
+      "wikidata_qid": null,
+      "icao": "XEA",
+      "iata": "X7",
+      "country": "DE",
+      "region": "eu",
+      "founded": "1998-04",
+      "ceased": null,
+      "successor_id": null,
+      "logo": {
+        "url": "img/logos/al-example-air.svg",
+        "thumb_url": null,
+        "width": null,
+        "height": null,
+        "author": null,
+        "license": "CC0-1.0",
+        "source_url": null,
+        "taken_at": null
+      },
+      "fleet_count": 3,
+      "family_counts": {
+        "a320fam": 2,
+        "a350": 1
+      }
+    },
+    {
+      "id": "al-sample-regional",
+      "name": "Sample Regional",
+      "wikidata_qid": null,
+      "icao": "XSR",
+      "iata": "X9",
+      "country": "SE",
+      "region": "eu",
+      "founded": "2004",
+      "ceased": null,
+      "successor_id": null,
+      "logo": null,
+      "fleet_count": 1,
+      "family_counts": {
+        "ejet": 1
+      }
+    }
+  ]
+}

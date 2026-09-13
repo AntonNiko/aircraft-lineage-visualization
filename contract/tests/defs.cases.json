@@ -29,6 +29,30 @@
       "valid": ["DE", "US", "GB"],
       "invalid": ["de", "DEU", "D", "", null]
     },
+    "wikidataQid": {
+      "valid": ["Q9325", "Q1"],
+      "invalid": ["q9325", "Q0", "Q09325", "9325", "Q", "P154", "", null]
+    },
+    "icaoAirlineCode": {
+      "valid": ["DLH", "AAL", "EZY"],
+      "invalid": ["dlh", "DL", "DLHX", "D1H", "", null]
+    },
+    "iataAirlineCode": {
+      "valid": ["LH", "U2", "9W", "5X"],
+      "invalid": ["lh", "L", "LHX", "L-", "", null]
+    },
+    "registration": {
+      "valid": ["D-AIZA", "N12345", "VH-OQA", "JA8089", "4X-EKA", "HB-JCA"],
+      "invalid": ["d-aiza", "D AIZA", "D--AIZA", "-DAIZA", "D-AIZA-", "D_AIZA", "ABCDEFGHIJKLMNOPQ", "", null]
+    },
+    "icaoTypeCode": {
+      "valid": ["A320", "B738", "E190", "DH8D", "A20N", "C5"],
+      "invalid": ["a320", "320A", "A", "A3200", "B-738", "", null]
+    },
+    "msn": {
+      "valid": ["4101", "29934", "E3432", "340A-123", "1450743164027"],
+      "invalid": [" 4101", "4101 ", "-4101", "41 01", "", null]
+    },
     "region": {
       "valid": ["af", "as", "eu", "me", "na", "oc", "sa"],
       "invalid": ["EU", "europe", "an", "", null]

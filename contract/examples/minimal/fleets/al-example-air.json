@@ -1,0 +1,48 @@
+{
+  "airline_id": "al-example-air",
+  "as_of": "2026-08",
+  "aircraft": [
+    {
+      "id": "airbus-a320fam-9001",
+      "reg": "D-AXAA",
+      "type_code": "A320",
+      "family": "a320fam",
+      "msn": "9001",
+      "built": "2012-03",
+      "status": "active",
+      "previous_operator_count": 0,
+      "thumb": null
+    },
+    {
+      "id": "airbus-a320fam-9002",
+      "reg": "D-AXAB",
+      "type_code": "A321",
+      "family": "a320fam",
+      "msn": "9002",
+      "built": "2016-07",
+      "status": "stored",
+      "previous_operator_count": 1,
+      "thumb": {
+        "url": "img/photos/airbus-a320fam-9002.jpg",
+        "thumb_url": null,
+        "width": 1600,
+        "height": 1067,
+        "author": "Example Photographer",
+        "license": "CC-BY-4.0",
+        "source_url": "https://photos.example/airbus-a320fam-9002",
+        "taken_at": "2019-06-02"
+      }
+    },
+    {
+      "id": "airbus-a350-142",
+      "reg": "D-AXAC",
+      "type_code": "A359",
+      "family": "a350",
+      "msn": "142",
+      "built": null,
+      "status": "active",
+      "previous_operator_count": null,
+      "thumb": null
+    }
+  ]
+}

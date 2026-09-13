@@ -14,3 +14,7 @@ Start an entry with **Breaking:** when it is a Major change.
 - `manifest.schema.json`: `contract_version`, `producer` (`mock` or `pipeline`), `generated_at`, `data_as_of`, `counts` and nullable `coverage`.
 - `sources.schema.json`: sources cited by `source_ids`, each with `id`, `name`, `url`, `license` and `retrieved_at`.
 - `examples/minimal/` baseline dataset with `manifest.json` and `sources.json`, plus whole-document test cases for both schemas.
+- Shared definitions `wikidataQid`, `icaoAirlineCode`, `iataAirlineCode`, `registration`, `icaoTypeCode` and `msn`.
+- `airlines.schema.json`: every airline, including ceased ones, with codes, dates, successor, logo, `fleet_count` and `family_counts` (values sum to `fleet_count`).
+- `fleet.schema.json`: `fleets/{airline_id}.json` with the current aircraft in circle-pack slot order. `family` is never null; unmapped types use `other`.
+- `examples/minimal/` now has two airlines and four aircraft, with test cases for both new schemas.

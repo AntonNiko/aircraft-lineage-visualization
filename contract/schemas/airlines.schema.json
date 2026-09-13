@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aircraft-lineage.example/contract/airlines.schema.json",
+  "title": "Airlines",
+  "description": "Every airline in the dataset, including ones that have ceased, with enough data to lay out the world-level circle pack without loading any fleet. Rules JSON Schema can't check: IDs are unique; successor_id references an airline in this file; every airline with fleet_count > 0 has a fleets/{id}.json file whose aircraft match fleet_count and family_counts.",
+  "x-contract-status": "stable",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["airlines"],
+  "properties": {
+    "airlines": {
+      "description": "All airlines, sorted by id.",
+      "type": "array",
+      "items": { "$ref": "#/$defs/airline" }
+    }
+  },
+  "$defs": {
+    "airline": {
+      "title": "Airline",
+      "description": "One airline. Fleet figures describe the fleet as of manifest.data_as_of.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "name",
+        "wikidata_qid",
+        "icao",
+        "iata",
+        "country",
+        "region",
+        "founded",
+        "ceased",
+        "successor_id",
+        "logo",
+        "fleet_count",
+        "family_counts"
+      ],
+      "properties": {
+        "id": {
+          "description": "Stable pipeline-assigned ID. Use this in URLs and references, never the ICAO or IATA code.",
+          "$ref": "defs.schema.json#/$defs/airlineId"
+        },
+        "name": {
+          "description": "Display name, e.g. from Wikidata or the cleaned operator name.",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "examples": ["Lufthansa"]
+        },
+        "wikidata_qid": {
+          "description": "Matching Wikidata item, or null if the airline couldn't be matched.",
+          "oneOf": [{ "$ref": "defs.schema.json#/$defs/wikidataQid" }, { "type": "null" }]
+        },
+        "icao": {
+          "description": "ICAO designator the airline used, or null if it has none or it is unknown.",
+          "oneOf": [{ "$ref": "defs.schema.json#/$defs/icaoAirlineCode" }, { "type": "null" }]
+        },
+        "iata": {
+          "description": "IATA designator the airline used, or null if it has none or it is unknown.",
+          "oneOf": [{ "$ref": "defs.schema.json#/$defs/iataAirlineCode" }, { "type": "null" }]
+        },
+        "country": {
+          "description": "Country the airline is based in, or null if unknown.",
+          "oneOf": [{ "$ref": "defs.schema.json#/$defs/countryCode" }, { "type": "null" }]
+        },
+        "region": {
+          "description": "Region the airline appears under in the circle pack, or null if unknown. The app groups null regions under 'Unknown'.",
+          "oneOf": [{ "$ref": "defs.schema.json#/$defs/region" }, { "type": "null" }]
+        },
+        "founded": {
+          "description": "When the airline was founded or started operating, or null if unknown.",
+          "oneOf": [{ "$ref": "defs.schema.json#/$defs/partialDate" }, { "type": "null" }]
+        },
+        "ceased": {
+          "description": "When the airline stopped operating, or null if it is still operating or the date is unknown.",
+          "oneOf": [{ "$ref": "defs.schema.json#/$defs/partialDate" }, { "type": "null" }]
+        },
+        "successor_id": {
+          "description": "Airline that took over when this one ceased or merged, or null if there is none or it is unknown.",
+          "oneOf": [{ "$ref": "defs.schema.json#/$defs/airlineId" }, { "type": "null" }]
+        },
+        "logo": {
+          "description": "Airline logo, or null if none is available.",
+          "oneOf": [{ "$ref": "defs.schema.json#/$defs/imageRef" }, { "type": "null" }]
+        },
+        "fleet_count": {
+          "description": "Number of aircraft in the fleet as of manifest.data_as_of. 0 for airlines with no current fleet, such as ceased airlines.",
+          "$ref": "defs.schema.json#/$defs/count"
+        },
+        "family_counts": {
+          "description": "Fleet size per type family, used to draw family circles before the fleet file loads. Invariant: the values sum to fleet_count. Families with no aircraft are left out, so an airline with fleet_count 0 has {}. Written in ascending key order.",
+          "type": "object",
+          "propertyNames": { "$ref": "defs.schema.json#/$defs/typeFamily" },
+          "additionalProperties": { "type": "integer", "minimum": 1 }
+        }
+      }
+    }
+  }
+}
