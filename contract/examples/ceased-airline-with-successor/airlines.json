@@ -1,0 +1,36 @@
+{
+  "airlines": [
+    {
+      "id": "al-example-successor",
+      "name": "Example Successor",
+      "wikidata_qid": null,
+      "icao": "XES",
+      "iata": "X4",
+      "country": "IT",
+      "region": "eu",
+      "founded": "2019-10",
+      "ceased": null,
+      "successor_id": null,
+      "logo": null,
+      "fleet_count": 3,
+      "family_counts": {
+        "a320fam": 3
+      }
+    },
+    {
+      "id": "al-old-example",
+      "name": "Old Example Airways",
+      "wikidata_qid": null,
+      "icao": "XOE",
+      "iata": "X3",
+      "country": "IT",
+      "region": "eu",
+      "founded": "1987",
+      "ceased": "2019-10",
+      "successor_id": "al-example-successor",
+      "logo": null,
+      "fleet_count": 0,
+      "family_counts": {}
+    }
+  ]
+}

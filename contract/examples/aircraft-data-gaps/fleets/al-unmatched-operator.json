@@ -1,0 +1,39 @@
+{
+  "airline_id": "al-unmatched-operator",
+  "as_of": "2026-08",
+  "aircraft": [
+    {
+      "id": "atr-atr72-1044",
+      "reg": "SE-MXB",
+      "type_code": "AT75",
+      "family": "atr72",
+      "msn": "1044",
+      "built": "2013",
+      "status": null,
+      "previous_operator_count": 0,
+      "thumb": null
+    },
+    {
+      "id": "atr-atr72-1101",
+      "reg": "SE-MXA",
+      "type_code": "AT76",
+      "family": "atr72",
+      "msn": "1101",
+      "built": null,
+      "status": "active",
+      "previous_operator_count": null,
+      "thumb": null
+    },
+    {
+      "id": "saab-340-340a123",
+      "reg": null,
+      "type_code": null,
+      "family": "other",
+      "msn": "340A-123",
+      "built": null,
+      "status": null,
+      "previous_operator_count": null,
+      "thumb": null
+    }
+  ]
+}

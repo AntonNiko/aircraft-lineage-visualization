@@ -1,0 +1,38 @@
+{
+  "airlines": [
+    {
+      "id": "al-example-air",
+      "name": "Example Air",
+      "wikidata_qid": null,
+      "icao": "XEA",
+      "iata": "X7",
+      "country": "DE",
+      "region": "eu",
+      "founded": "1998-04",
+      "ceased": null,
+      "successor_id": null,
+      "logo": null,
+      "fleet_count": 1,
+      "family_counts": {
+        "a320fam": 1
+      }
+    },
+    {
+      "id": "al-sample-charter",
+      "name": "Sample Charter",
+      "wikidata_qid": null,
+      "icao": "XSC",
+      "iata": null,
+      "country": "SE",
+      "region": "eu",
+      "founded": "2009",
+      "ceased": null,
+      "successor_id": null,
+      "logo": null,
+      "fleet_count": 1,
+      "family_counts": {
+        "a320fam": 1
+      }
+    }
+  ]
+}

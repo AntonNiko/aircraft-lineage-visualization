@@ -1,0 +1,44 @@
+{
+  "docs": [
+    {
+      "kind": "aircraft",
+      "id": "boeing-737-61001",
+      "airline_id": "al-red-coast-2",
+      "label": "XA-RCA · B738 · Red Coast Air",
+      "terms": [
+        "61001",
+        "XA-RCA"
+      ]
+    },
+    {
+      "kind": "aircraft",
+      "id": "boeing-737-61002",
+      "airline_id": "al-red-coast-2",
+      "label": "XA-RCB · B38M · Red Coast Air",
+      "terms": [
+        "61002",
+        "XA-RCB"
+      ]
+    },
+    {
+      "kind": "airline",
+      "id": "al-red-coast",
+      "label": "Red Coast Airlines (X5 / XRC), 1994–2012",
+      "terms": [
+        "Red Coast Airlines",
+        "X5",
+        "XRC"
+      ]
+    },
+    {
+      "kind": "airline",
+      "id": "al-red-coast-2",
+      "label": "Red Coast Air (X5 / XRC), since 2015",
+      "terms": [
+        "Red Coast Air",
+        "X5",
+        "XRC"
+      ]
+    }
+  ]
+}

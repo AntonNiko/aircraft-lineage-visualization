@@ -1,0 +1,44 @@
+{
+  "docs": [
+    {
+      "kind": "aircraft",
+      "id": "airbus-a320fam-5001",
+      "airline_id": "al-sample-charter",
+      "label": "SE-RZA · A320 · Sample Charter",
+      "terms": [
+        "5001",
+        "D-AXRR",
+        "SE-RZA"
+      ]
+    },
+    {
+      "kind": "aircraft",
+      "id": "airbus-a320fam-9901",
+      "airline_id": "al-example-air",
+      "label": "D-AXRR · A20N · Example Air",
+      "terms": [
+        "9901",
+        "D-AXRR"
+      ]
+    },
+    {
+      "kind": "airline",
+      "id": "al-example-air",
+      "label": "Example Air (X7 / XEA)",
+      "terms": [
+        "Example Air",
+        "X7",
+        "XEA"
+      ]
+    },
+    {
+      "kind": "airline",
+      "id": "al-sample-charter",
+      "label": "Sample Charter (XSC)",
+      "terms": [
+        "Sample Charter",
+        "XSC"
+      ]
+    }
+  ]
+}

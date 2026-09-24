@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aircraft-lineage.example/contract/fleet-months.schema.json",
+  "title": "Fleet months",
+  "description": "DRAFT, finalized in Phase 4 (time slider). Monthly fleet sizes for every airline in a columnar layout: one months array, and per airline count arrays aligned to it. Rules JSON Schema can't check: months is ascending with no gaps; every count array has the same length as months; for each month, by_family values sum to totals; airline_id values reference airlines.json.",
+  "x-contract-status": "draft",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["months", "airlines"],
+  "properties": {
+    "months": {
+      "description": "Every month covered, ascending with no gaps.",
+      "type": "array",
+      "items": { "$ref": "defs.schema.json#/$defs/month" }
+    },
+    "airlines": {
+      "description": "One entry per airline that had a fleet in any covered month, sorted by airline_id.",
+      "type": "array",
+      "items": { "$ref": "#/$defs/airlineSeries" }
+    }
+  },
+  "$defs": {
+    "countSeries": {
+      "title": "CountSeries",
+      "description": "One count per entry in months, in the same order.",
+      "type": "array",
+      "items": { "$ref": "defs.schema.json#/$defs/count" }
+    },
+    "airlineSeries": {
+      "title": "AirlineFleetSeries",
+      "description": "One airline's fleet size over time.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["airline_id", "totals", "by_family"],
+      "properties": {
+        "airline_id": { "description": "Airline the series belongs to.", "$ref": "defs.schema.json#/$defs/airlineId" },
+        "totals": { "description": "Total fleet size per month.", "$ref": "#/$defs/countSeries" },
+        "by_family": {
+          "description": "Fleet size per month for each type family the airline ever operated, keyed by family in ascending order.",
+          "type": "object",
+          "propertyNames": { "$ref": "defs.schema.json#/$defs/typeFamily" },
+          "additionalProperties": { "$ref": "#/$defs/countSeries" }
+        }
+      }
+    }
+  }
+}

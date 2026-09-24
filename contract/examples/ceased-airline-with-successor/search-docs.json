@@ -1,0 +1,56 @@
+{
+  "docs": [
+    {
+      "kind": "aircraft",
+      "id": "airbus-a320fam-7001",
+      "airline_id": "al-example-successor",
+      "label": "EI-XSA · A320 · Example Successor",
+      "terms": [
+        "7001",
+        "EI-XSA",
+        "I-XOEA"
+      ]
+    },
+    {
+      "kind": "aircraft",
+      "id": "airbus-a320fam-7002",
+      "airline_id": "al-example-successor",
+      "label": "EI-XSB · A320 · Example Successor",
+      "terms": [
+        "7002",
+        "EI-XSB",
+        "I-XOEB"
+      ]
+    },
+    {
+      "kind": "aircraft",
+      "id": "airbus-a320fam-8801",
+      "airline_id": "al-example-successor",
+      "label": "EI-XSC · A20N · Example Successor",
+      "terms": [
+        "8801",
+        "EI-XSC"
+      ]
+    },
+    {
+      "kind": "airline",
+      "id": "al-example-successor",
+      "label": "Example Successor (X4 / XES)",
+      "terms": [
+        "Example Successor",
+        "X4",
+        "XES"
+      ]
+    },
+    {
+      "kind": "airline",
+      "id": "al-old-example",
+      "label": "Old Example Airways (X3 / XOE), ceased 2019",
+      "terms": [
+        "Old Example Airways",
+        "X3",
+        "XOE"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "@aircraft-lineage/contract",
+  "private": true,
+  "description": "Data contract schemas and code generation for the Aircraft Lineage website.",
+  "type": "module",
+  "scripts": {
+    "bundle": "node scripts/bundle.mjs build/contract.bundle.schema.json",
+    "codegen:ts": "node scripts/generate-ts.mjs build/contract.bundle.schema.json ../web/src/lib/data/contract.gen.ts",
+    "codegen:py": "sh scripts/generate-py.sh build/contract.bundle.schema.json ../pipeline/lineage/contract_models.py",
+    "codegen": "npm run bundle && npm run codegen:ts && npm run codegen:py",
+    "typecheck": "tsc --noEmit --strict --target es2022 ../web/src/lib/data/contract.gen.ts"
+  },
+  "devDependencies": {
+    "json-schema-to-typescript": "16.0.0",
+    "typescript": "7.0.2"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "airlines": [
+    {
+      "id": "al-red-coast",
+      "name": "Red Coast Airlines",
+      "wikidata_qid": null,
+      "icao": "XRC",
+      "iata": "X5",
+      "country": "US",
+      "region": "na",
+      "founded": "1994",
+      "ceased": "2012-03",
+      "successor_id": null,
+      "logo": null,
+      "fleet_count": 0,
+      "family_counts": {}
+    },
+    {
+      "id": "al-red-coast-2",
+      "name": "Red Coast Air",
+      "wikidata_qid": null,
+      "icao": "XRC",
+      "iata": "X5",
+      "country": "MX",
+      "region": "na",
+      "founded": "2015-06",
+      "ceased": null,
+      "successor_id": null,
+      "logo": null,
+      "fleet_count": 2,
+      "family_counts": {
+        "737": 2
+      }
+    }
+  ]
+}

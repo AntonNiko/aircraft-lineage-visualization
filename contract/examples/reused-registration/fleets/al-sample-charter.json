@@ -1,0 +1,17 @@
+{
+  "airline_id": "al-sample-charter",
+  "as_of": "2026-08",
+  "aircraft": [
+    {
+      "id": "airbus-a320fam-5001",
+      "reg": "SE-RZA",
+      "type_code": "A320",
+      "family": "a320fam",
+      "msn": "5001",
+      "built": "2003-01",
+      "status": "stored",
+      "previous_operator_count": 1,
+      "thumb": null
+    }
+  ]
+}

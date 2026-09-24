@@ -1,0 +1,28 @@
+{
+  "airline_id": "al-red-coast-2",
+  "as_of": "2026-08",
+  "aircraft": [
+    {
+      "id": "boeing-737-61001",
+      "reg": "XA-RCA",
+      "type_code": "B738",
+      "family": "737",
+      "msn": "61001",
+      "built": "2015-04",
+      "status": "active",
+      "previous_operator_count": 0,
+      "thumb": null
+    },
+    {
+      "id": "boeing-737-61002",
+      "reg": "XA-RCB",
+      "type_code": "B38M",
+      "family": "737",
+      "msn": "61002",
+      "built": "2019-11",
+      "status": "active",
+      "previous_operator_count": 0,
+      "thumb": null
+    }
+  ]
+}

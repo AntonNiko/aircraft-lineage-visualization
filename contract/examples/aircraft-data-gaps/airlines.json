@@ -1,0 +1,22 @@
+{
+  "airlines": [
+    {
+      "id": "al-unmatched-operator",
+      "name": "NORDIC EXAMPLE AVIATION AB",
+      "wikidata_qid": null,
+      "icao": null,
+      "iata": null,
+      "country": null,
+      "region": null,
+      "founded": null,
+      "ceased": null,
+      "successor_id": null,
+      "logo": null,
+      "fleet_count": 3,
+      "family_counts": {
+        "atr72": 2,
+        "other": 1
+      }
+    }
+  ]
+}

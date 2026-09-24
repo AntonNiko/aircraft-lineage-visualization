@@ -1,0 +1,39 @@
+{
+  "airline_id": "al-example-successor",
+  "as_of": "2026-08",
+  "aircraft": [
+    {
+      "id": "airbus-a320fam-7001",
+      "reg": "EI-XSA",
+      "type_code": "A320",
+      "family": "a320fam",
+      "msn": "7001",
+      "built": "2010-02",
+      "status": "active",
+      "previous_operator_count": 1,
+      "thumb": null
+    },
+    {
+      "id": "airbus-a320fam-7002",
+      "reg": "EI-XSB",
+      "type_code": "A320",
+      "family": "a320fam",
+      "msn": "7002",
+      "built": "2010-05",
+      "status": "active",
+      "previous_operator_count": 1,
+      "thumb": null
+    },
+    {
+      "id": "airbus-a320fam-8801",
+      "reg": "EI-XSC",
+      "type_code": "A20N",
+      "family": "a320fam",
+      "msn": "8801",
+      "built": "2021",
+      "status": "active",
+      "previous_operator_count": 0,
+      "thumb": null
+    }
+  ]
+}

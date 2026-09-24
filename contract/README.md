@@ -11,9 +11,12 @@ contract/
 ├─ VERSION        # current contract version (single source of truth)
 ├─ CHANGELOG.md   # every contract change, newest first
 ├─ schemas/       # JSON Schema files
-├─ examples/      # hand-written edge-case datasets, one folder per scenario
-├─ tests/         # valid/invalid cases for schema definitions
-└─ mock/          # seeded mock data generator
+├─ examples/      # hand-written datasets, one folder per scenario
+├─ tests/         # valid/invalid cases for every schema
+├─ scripts/       # bundling and code generation
+├─ mock/          # seeded mock data generator
+├─ package.json               # codegen tooling (npm)
+└─ requirements-codegen.txt   # codegen tooling (Python)
 ```
 
 ## Published files
@@ -55,7 +58,7 @@ Shared building blocks live in `defs.schema.json`. It is not a published file.
 ```
 
 - `$id` is an identifier only; validators load schemas from this folder and never fetch it. The domain uses the reserved `.example` TLD, so it can't point at someone else's site. The version is not in `$id`; `VERSION` tracks it.
-- `x-contract-status` is `stable` or `draft`. Draft schemas can change without a version bump and are excluded from compatibility checks. Validators must register the keyword (e.g. `ajv.addKeyword("x-contract-status")`), because ajv's strict mode rejects unknown keywords.
+- `x-contract-status` is `stable` or `draft`. Draft schemas can change without a version bump, are excluded from compatibility checks and from generated code, and start their `description` with `DRAFT`. They still follow every convention and have test cases. Validators must register the keyword (e.g. `ajv.addKeyword("x-contract-status")`), because ajv's strict mode rejects unknown keywords.
 
 ### Fields
 
@@ -63,7 +66,7 @@ Shared building blocks live in `defs.schema.json`. It is not a published file.
 - **Every property is listed in `required`.** Missing data is `null`, never an omitted key. Nullable fields declare `"type": ["string", "null"]`, or `"oneOf": [{ "$ref": "…" }, { "type": "null" }]` for refs.
 - **Assume nullable.** Make a field non-null only when the pipeline can always fill it. Making a field nullable later is a breaking change (see [Versioning](#versioning)).
 - Every object sets `"additionalProperties": false`, so typos and unannounced fields fail validation.
-- Every property has a `description`. It becomes a doc comment in the generated TypeScript and Pydantic code.
+- Every property has a `description`, or references a definition that has one. It becomes a doc comment in the generated TypeScript and Pydantic code.
 - Strings are never empty: use `null` and set `"minLength": 1`.
 - Arrays are never `null`: use `[]`.
 - Maps (e.g. `family_counts`) are objects with a `propertyNames` pattern and a typed `additionalProperties`.
@@ -117,15 +120,50 @@ examples/
 └─ ceased-airline-with-successor/
    ├─ README.md       # what the case covers and why it matters
    ├─ manifest.json
+   ├─ sources.json
    ├─ airlines.json
+   ├─ search-docs.json
    └─ fleets/
-      └─ al-example-air.json
+      └─ al-example-successor.json
 ```
 
-- `minimal/` is the baseline dataset that each schema ticket extends; edge-case scenarios sit alongside it.
+| Scenario | Covers |
+|---|---|
+| `minimal/` | Baseline: two airlines, four aircraft, mixed and single-family fleets, photos and logos |
+| `ceased-airline-with-successor/` | Ceased airline with no fleet file, still in search; its aircraft now with the successor |
+| `reused-airline-code/` | Two unrelated airlines with the same ICAO and IATA codes at different times |
+| `reused-registration/` | One registration carried by two different airframes |
+| `aircraft-data-gaps/` | Every nullable field null: unmatched airline, no registration, type or build date, family `other` |
+
+- Every scenario is a complete dataset with all stable files, and its README says what it covers.
 - Folder names are kebab-case and describe the case.
 - Every file must validate. Tests load each folder as a complete dataset, and the mock generator merges them into its output.
 - Use fictional airlines and registrations unless the real case is the point, so examples don't read as claims about real aircraft.
+
+## Code generation
+
+The web app's TypeScript types and the pipeline's Pydantic models are generated from the stable schemas. From `contract/`:
+
+```sh
+npm install          # first time only
+npm run codegen      # regenerate both outputs
+npm run typecheck    # compile-check the TypeScript output
+```
+
+| Output | Generator |
+|---|---|
+| `web/src/lib/data/contract.gen.ts` | `json-schema-to-typescript` |
+| `pipeline/lineage/contract_models.py` | `datamodel-code-generator` (Pydantic v2, Python 3.12+) |
+
+How it works:
+
+1. `scripts/bundle.mjs` merges every **stable** schema into one document in `build/` (git-ignored). Drafts are skipped. Shared definitions keep their names; each published schema and its local definitions are named after its `title`, so two schemas must never share a title.
+2. Both generators run on that bundle, so shared types like `PartialDate` are declared once.
+3. The first `codegen:py` run creates `contract/.venv` and installs the pinned generator. Tool versions are pinned in `package.json`, `package-lock.json` and `requirements-codegen.txt`, so output is byte-identical across runs.
+
+Generated files are committed. Never edit them by hand; change the schema and regenerate.
+
+Generated code checks shapes, not every rule. `format` hints are dropped, since the patterns already enforce the shape. Pydantic doesn't enforce `not` (e.g. airframe IDs starting with `al-`) or `uniqueItems`, and TypeScript types check no patterns at all. Validate real data with a JSON Schema validator: ajv in the app's tests, `jsonschema` in the pipeline exporter.
 
 ## Versioning
 
@@ -155,7 +193,7 @@ A PR that changes anything in `schemas/` must:
 1. Edit the schema(s).
 2. Classify the change using the table above and bump `VERSION` (skip for draft-only changes).
 3. Add a `CHANGELOG.md` entry under `[Unreleased]`, starting with **Breaking:** if it is a Major change.
-4. Regenerate the TypeScript types and Pydantic models.
+4. Regenerate the TypeScript types and Pydantic models with `npm run codegen`.
 5. Add or update examples in `examples/`.
 6. Update the mock generator in `mock/`.
 7. Update the pipeline exporter. For a Minor change this can follow in a later PR; for a Major change it must be in the same PR.

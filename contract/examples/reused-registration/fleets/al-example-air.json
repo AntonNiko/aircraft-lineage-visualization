@@ -1,0 +1,17 @@
+{
+  "airline_id": "al-example-air",
+  "as_of": "2026-08",
+  "aircraft": [
+    {
+      "id": "airbus-a320fam-9901",
+      "reg": "D-AXRR",
+      "type_code": "A20N",
+      "family": "a320fam",
+      "msn": "9901",
+      "built": "2018-09",
+      "status": "active",
+      "previous_operator_count": 0,
+      "thumb": null
+    }
+  ]
+}

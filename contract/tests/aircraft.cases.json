@@ -1,0 +1,769 @@
+{
+  "description": "DRAFT cases for schemas/aircraft.schema.json; expand when the schema is finalized in Phase 3.",
+  "valid": [
+    {
+      "id": "airbus-a320fam-9002",
+      "manufacturer": "Airbus",
+      "type_code": "A321",
+      "family": "a320fam",
+      "msn": "9002",
+      "line_number": null,
+      "built": "2016-07",
+      "status": "stored",
+      "current": {
+        "airline_id": "al-example-air",
+        "reg": "D-AXAB"
+      },
+      "registrations": [
+        {
+          "reg": "OE-IXB",
+          "icao24": "440ABC",
+          "country": "AT",
+          "period": {
+            "start": "2016-07",
+            "end": "2021-03"
+          },
+          "confidence": 0.9,
+          "source_ids": [
+            "opensky-2026-08"
+          ]
+        },
+        {
+          "reg": "D-AXAB",
+          "icao24": null,
+          "country": "DE",
+          "period": {
+            "start": "2021-05",
+            "end": null
+          },
+          "confidence": 0.8,
+          "source_ids": [
+            "opensky-2026-08"
+          ]
+        }
+      ],
+      "operator_tenures": [
+        {
+          "airline_id": null,
+          "operator_name": "Alpine Example GmbH",
+          "kind": "operated",
+          "period": {
+            "start": "2016-07",
+            "end": "2021-03"
+          },
+          "confidence": 0.7,
+          "source_ids": [
+            "opensky-2026-08"
+          ]
+        },
+        {
+          "airline_id": null,
+          "operator_name": null,
+          "kind": "stored",
+          "period": {
+            "start": "2021-03",
+            "end": "2021-05"
+          },
+          "confidence": 0.5,
+          "source_ids": [
+            "opensky-2026-08"
+          ]
+        },
+        {
+          "airline_id": "al-example-air",
+          "operator_name": null,
+          "kind": "operated",
+          "period": {
+            "start": "2021-05",
+            "end": null
+          },
+          "confidence": 0.9,
+          "source_ids": [
+            "opensky-2026-08"
+          ]
+        }
+      ],
+      "ownership_tenures": [
+        {
+          "owner_name": "Example Leasing Ltd",
+          "owner_kind": "lessor",
+          "airline_id": null,
+          "period": {
+            "start": null,
+            "end": null
+          },
+          "confidence": 0.6,
+          "source_ids": [
+            "opensky-2026-08"
+          ]
+        }
+      ],
+      "photos": [
+        {
+          "image": {
+            "url": "img/photos/airbus-a320fam-9002.jpg",
+            "thumb_url": null,
+            "width": 1600,
+            "height": 1067,
+            "author": "Example Photographer",
+            "license": "CC-BY-4.0",
+            "source_url": "https://photos.example/airbus-a320fam-9002",
+            "taken_at": "2019-06-02"
+          },
+          "airline_id": null,
+          "reg": "OE-IXB"
+        }
+      ],
+      "stats": {
+        "operator_count": 2,
+        "registration_count": 2,
+        "observed_flights": null,
+        "first_seen": null,
+        "last_seen": null
+      }
+    },
+    {
+      "id": "airbus-a320fam-9002",
+      "manufacturer": "Airbus",
+      "type_code": "A321",
+      "family": "a320fam",
+      "msn": "9002",
+      "line_number": null,
+      "built": "2016-07",
+      "status": null,
+      "current": {
+        "airline_id": "al-example-air",
+        "reg": "D-AXAB"
+      },
+      "registrations": [],
+      "operator_tenures": [],
+      "ownership_tenures": [],
+      "photos": [],
+      "stats": {
+        "operator_count": 2,
+        "registration_count": 2,
+        "observed_flights": null,
+        "first_seen": null,
+        "last_seen": null
+      }
+    }
+  ],
+  "invalid": [
+    {
+      "why": "operator tenure kind not in enum",
+      "value": {
+        "id": "airbus-a320fam-9002",
+        "manufacturer": "Airbus",
+        "type_code": "A321",
+        "family": "a320fam",
+        "msn": "9002",
+        "line_number": null,
+        "built": "2016-07",
+        "status": "stored",
+        "current": {
+          "airline_id": "al-example-air",
+          "reg": "D-AXAB"
+        },
+        "registrations": [
+          {
+            "reg": "OE-IXB",
+            "icao24": "440ABC",
+            "country": "AT",
+            "period": {
+              "start": "2016-07",
+              "end": "2021-03"
+            },
+            "confidence": 0.9,
+            "source_ids": [
+              "opensky-2026-08"
+            ]
+          },
+          {
+            "reg": "D-AXAB",
+            "icao24": null,
+            "country": "DE",
+            "period": {
+              "start": "2021-05",
+              "end": null
+            },
+            "confidence": 0.8,
+            "source_ids": [
+              "opensky-2026-08"
+            ]
+          }
+        ],
+        "operator_tenures": [
+          {
+            "airline_id": null,
+            "operator_name": "Alpine Example GmbH",
+            "kind": "leased",
+            "period": {
+              "start": "2016-07",
+              "end": "2021-03"
+            },
+            "confidence": 0.7,
+            "source_ids": [
+              "opensky-2026-08"
+            ]
+          },
+          {
+            "airline_id": null,
+            "operator_name": null,
+            "kind": "stored",
+            "period": {
+              "start": "2021-03",
+              "end": "2021-05"
+            },
+            "confidence": 0.5,
+            "source_ids": [
+              "opensky-2026-08"
+            ]
+          },
+          {
+            "airline_id": "al-example-air",
+            "operator_name": null,
+            "kind": "operated",
+            "period": {
+              "start": "2021-05",
+              "end": null
+            },
+            "confidence": 0.9,
+            "source_ids": [
+              "opensky-2026-08"
+            ]
+          }
+        ],
+        "ownership_tenures": [
+          {
+            "owner_name": "Example Leasing Ltd",
+            "owner_kind": "lessor",
+            "airline_id": null,
+            "period": {
+              "start": null,
+              "end": null
+            },
+            "confidence": 0.6,
+            "source_ids": [
+              "opensky-2026-08"
+            ]
+          }
+        ],
+        "photos": [
+          {
+            "image": {
+              "url": "img/photos/airbus-a320fam-9002.jpg",
+              "thumb_url": null,
+              "width": 1600,
+              "height": 1067,
+              "author": "Example Photographer",
+              "license": "CC-BY-4.0",
+              "source_url": "https://photos.example/airbus-a320fam-9002",
+              "taken_at": "2019-06-02"
+            },
+            "airline_id": null,
+            "reg": "OE-IXB"
+          }
+        ],
+        "stats": {
+          "operator_count": 2,
+          "registration_count": 2,
+          "observed_flights": null,
+          "first_seen": null,
+          "last_seen": null
+        }
+      }
+    },
+    {
+      "why": "icao24 is lowercase hex",
+      "value": {
+        "id": "airbus-a320fam-9002",
+        "manufacturer": "Airbus",
+        "type_code": "A321",
+        "family": "a320fam",
+        "msn": "9002",
+        "line_number": null,
+        "built": "2016-07",
+        "status": "stored",
+        "current": {
+          "airline_id": "al-example-air",
+          "reg": "D-AXAB"
+        },
+        "registrations": [
+          {
+            "reg": "OE-IXB",
+            "icao24": "440abc",
+            "country": "AT",
+            "period": {
+              "start": "2016-07",
+              "end": "2021-03"
+            },
+            "confidence": 0.9,
+            "source_ids": [
+              "opensky-2026-08"
+            ]
+          },
+          {
+            "reg": "D-AXAB",
+            "icao24": null,
+            "country": "DE",
+            "period": {
+              "start": "2021-05",
+              "end": null
+            },
+            "confidence": 0.8,
+            "source_ids": [
+              "opensky-2026-08"
+            ]
+          }
+        ],
+        "operator_tenures": [
+          {
+            "airline_id": null,
+            "operator_name": "Alpine Example GmbH",
+            "kind": "operated",
+            "period": {
+              "start": "2016-07",
+              "end": "2021-03"
+            },
+            "confidence": 0.7,
+            "source_ids": [
+              "opensky-2026-08"
+            ]
+          },
+          {
+            "airline_id": null,
+            "operator_name": null,
+            "kind": "stored",
+            "period": {
+              "start": "2021-03",
+              "end": "2021-05"
+            },
+            "confidence": 0.5,
+            "source_ids": [
+              "opensky-2026-08"
+            ]
+          },
+          {
+            "airline_id": "al-example-air",
+            "operator_name": null,
+            "kind": "operated",
+            "period": {
+              "start": "2021-05",
+              "end": null
+            },
+            "confidence": 0.9,
+            "source_ids": [
+              "opensky-2026-08"
+            ]
+          }
+        ],
+        "ownership_tenures": [
+          {
+            "owner_name": "Example Leasing Ltd",
+            "owner_kind": "lessor",
+            "airline_id": null,
+            "period": {
+              "start": null,
+              "end": null
+            },
+            "confidence": 0.6,
+            "source_ids": [
+              "opensky-2026-08"
+            ]
+          }
+        ],
+        "photos": [
+          {
+            "image": {
+              "url": "img/photos/airbus-a320fam-9002.jpg",
+              "thumb_url": null,
+              "width": 1600,
+              "height": 1067,
+              "author": "Example Photographer",
+              "license": "CC-BY-4.0",
+              "source_url": "https://photos.example/airbus-a320fam-9002",
+              "taken_at": "2019-06-02"
+            },
+            "airline_id": null,
+            "reg": "OE-IXB"
+          }
+        ],
+        "stats": {
+          "operator_count": 2,
+          "registration_count": 2,
+          "observed_flights": null,
+          "first_seen": null,
+          "last_seen": null
+        }
+      }
+    },
+    {
+      "why": "tenure without source_ids",
+      "value": {
+        "id": "airbus-a320fam-9002",
+        "manufacturer": "Airbus",
+        "type_code": "A321",
+        "family": "a320fam",
+        "msn": "9002",
+        "line_number": null,
+        "built": "2016-07",
+        "status": "stored",
+        "current": {
+          "airline_id": "al-example-air",
+          "reg": "D-AXAB"
+        },
+        "registrations": [
+          {
+            "reg": "OE-IXB",
+            "icao24": "440ABC",
+            "country": "AT",
+            "period": {
+              "start": "2016-07",
+              "end": "2021-03"
+            },
+            "confidence": 0.9,
+            "source_ids": [
+              "opensky-2026-08"
+            ]
+          },
+          {
+            "reg": "D-AXAB",
+            "icao24": null,
+            "country": "DE",
+            "period": {
+              "start": "2021-05",
+              "end": null
+            },
+            "confidence": 0.8,
+            "source_ids": [
+              "opensky-2026-08"
+            ]
+          }
+        ],
+        "operator_tenures": [
+          {
+            "airline_id": null,
+            "operator_name": "Alpine Example GmbH",
+            "kind": "operated",
+            "period": {
+              "start": "2016-07",
+              "end": "2021-03"
+            },
+            "confidence": 0.7,
+            "source_ids": [
+              "opensky-2026-08"
+            ]
+          },
+          {
+            "airline_id": null,
+            "operator_name": null,
+            "kind": "stored",
+            "period": {
+              "start": "2021-03",
+              "end": "2021-05"
+            },
+            "confidence": 0.5,
+            "source_ids": [
+              "opensky-2026-08"
+            ]
+          },
+          {
+            "airline_id": "al-example-air",
+            "operator_name": null,
+            "kind": "operated",
+            "period": {
+              "start": "2021-05",
+              "end": null
+            },
+            "confidence": 0.9,
+            "source_ids": []
+          }
+        ],
+        "ownership_tenures": [
+          {
+            "owner_name": "Example Leasing Ltd",
+            "owner_kind": "lessor",
+            "airline_id": null,
+            "period": {
+              "start": null,
+              "end": null
+            },
+            "confidence": 0.6,
+            "source_ids": [
+              "opensky-2026-08"
+            ]
+          }
+        ],
+        "photos": [
+          {
+            "image": {
+              "url": "img/photos/airbus-a320fam-9002.jpg",
+              "thumb_url": null,
+              "width": 1600,
+              "height": 1067,
+              "author": "Example Photographer",
+              "license": "CC-BY-4.0",
+              "source_url": "https://photos.example/airbus-a320fam-9002",
+              "taken_at": "2019-06-02"
+            },
+            "airline_id": null,
+            "reg": "OE-IXB"
+          }
+        ],
+        "stats": {
+          "operator_count": 2,
+          "registration_count": 2,
+          "observed_flights": null,
+          "first_seen": null,
+          "last_seen": null
+        }
+      }
+    },
+    {
+      "why": "period end omitted instead of null",
+      "value": {
+        "id": "airbus-a320fam-9002",
+        "manufacturer": "Airbus",
+        "type_code": "A321",
+        "family": "a320fam",
+        "msn": "9002",
+        "line_number": null,
+        "built": "2016-07",
+        "status": "stored",
+        "current": {
+          "airline_id": "al-example-air",
+          "reg": "D-AXAB"
+        },
+        "registrations": [
+          {
+            "reg": "OE-IXB",
+            "icao24": "440ABC",
+            "country": "AT",
+            "period": {
+              "start": "2016-07",
+              "end": "2021-03"
+            },
+            "confidence": 0.9,
+            "source_ids": [
+              "opensky-2026-08"
+            ]
+          },
+          {
+            "reg": "D-AXAB",
+            "icao24": null,
+            "country": "DE",
+            "period": {
+              "start": "2021-05"
+            },
+            "confidence": 0.8,
+            "source_ids": [
+              "opensky-2026-08"
+            ]
+          }
+        ],
+        "operator_tenures": [
+          {
+            "airline_id": null,
+            "operator_name": "Alpine Example GmbH",
+            "kind": "operated",
+            "period": {
+              "start": "2016-07",
+              "end": "2021-03"
+            },
+            "confidence": 0.7,
+            "source_ids": [
+              "opensky-2026-08"
+            ]
+          },
+          {
+            "airline_id": null,
+            "operator_name": null,
+            "kind": "stored",
+            "period": {
+              "start": "2021-03",
+              "end": "2021-05"
+            },
+            "confidence": 0.5,
+            "source_ids": [
+              "opensky-2026-08"
+            ]
+          },
+          {
+            "airline_id": "al-example-air",
+            "operator_name": null,
+            "kind": "operated",
+            "period": {
+              "start": "2021-05",
+              "end": null
+            },
+            "confidence": 0.9,
+            "source_ids": [
+              "opensky-2026-08"
+            ]
+          }
+        ],
+        "ownership_tenures": [
+          {
+            "owner_name": "Example Leasing Ltd",
+            "owner_kind": "lessor",
+            "airline_id": null,
+            "period": {
+              "start": null,
+              "end": null
+            },
+            "confidence": 0.6,
+            "source_ids": [
+              "opensky-2026-08"
+            ]
+          }
+        ],
+        "photos": [
+          {
+            "image": {
+              "url": "img/photos/airbus-a320fam-9002.jpg",
+              "thumb_url": null,
+              "width": 1600,
+              "height": 1067,
+              "author": "Example Photographer",
+              "license": "CC-BY-4.0",
+              "source_url": "https://photos.example/airbus-a320fam-9002",
+              "taken_at": "2019-06-02"
+            },
+            "airline_id": null,
+            "reg": "OE-IXB"
+          }
+        ],
+        "stats": {
+          "operator_count": 2,
+          "registration_count": 2,
+          "observed_flights": null,
+          "first_seen": null,
+          "last_seen": null
+        }
+      }
+    },
+    {
+      "why": "stats missing observed_flights",
+      "value": {
+        "id": "airbus-a320fam-9002",
+        "manufacturer": "Airbus",
+        "type_code": "A321",
+        "family": "a320fam",
+        "msn": "9002",
+        "line_number": null,
+        "built": "2016-07",
+        "status": "stored",
+        "current": {
+          "airline_id": "al-example-air",
+          "reg": "D-AXAB"
+        },
+        "registrations": [
+          {
+            "reg": "OE-IXB",
+            "icao24": "440ABC",
+            "country": "AT",
+            "period": {
+              "start": "2016-07",
+              "end": "2021-03"
+            },
+            "confidence": 0.9,
+            "source_ids": [
+              "opensky-2026-08"
+            ]
+          },
+          {
+            "reg": "D-AXAB",
+            "icao24": null,
+            "country": "DE",
+            "period": {
+              "start": "2021-05",
+              "end": null
+            },
+            "confidence": 0.8,
+            "source_ids": [
+              "opensky-2026-08"
+            ]
+          }
+        ],
+        "operator_tenures": [
+          {
+            "airline_id": null,
+            "operator_name": "Alpine Example GmbH",
+            "kind": "operated",
+            "period": {
+              "start": "2016-07",
+              "end": "2021-03"
+            },
+            "confidence": 0.7,
+            "source_ids": [
+              "opensky-2026-08"
+            ]
+          },
+          {
+            "airline_id": null,
+            "operator_name": null,
+            "kind": "stored",
+            "period": {
+              "start": "2021-03",
+              "end": "2021-05"
+            },
+            "confidence": 0.5,
+            "source_ids": [
+              "opensky-2026-08"
+            ]
+          },
+          {
+            "airline_id": "al-example-air",
+            "operator_name": null,
+            "kind": "operated",
+            "period": {
+              "start": "2021-05",
+              "end": null
+            },
+            "confidence": 0.9,
+            "source_ids": [
+              "opensky-2026-08"
+            ]
+          }
+        ],
+        "ownership_tenures": [
+          {
+            "owner_name": "Example Leasing Ltd",
+            "owner_kind": "lessor",
+            "airline_id": null,
+            "period": {
+              "start": null,
+              "end": null
+            },
+            "confidence": 0.6,
+            "source_ids": [
+              "opensky-2026-08"
+            ]
+          }
+        ],
+        "photos": [
+          {
+            "image": {
+              "url": "img/photos/airbus-a320fam-9002.jpg",
+              "thumb_url": null,
+              "width": 1600,
+              "height": 1067,
+              "author": "Example Photographer",
+              "license": "CC-BY-4.0",
+              "source_url": "https://photos.example/airbus-a320fam-9002",
+              "taken_at": "2019-06-02"
+            },
+            "airline_id": null,
+            "reg": "OE-IXB"
+          }
+        ],
+        "stats": {
+          "operator_count": 2,
+          "registration_count": 2,
+          "first_seen": null,
+          "last_seen": null
+        }
+      }
+    }
+  ]
+}

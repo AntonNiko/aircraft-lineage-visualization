@@ -20,6 +20,10 @@ Start an entry with **Breaking:** when it is a Major change.
 - `examples/minimal/` now has two airlines and four aircraft, with test cases for both new schemas.
 - `search-docs.schema.json`: aircraft and airline search documents with `kind`, `id`, `label` and `terms`. Aircraft docs also carry `airline_id`, so selecting a result loads only that airline's fleet.
 - `examples/minimal/search-docs.json` and `tests/search-docs.cases.json`.
+- Draft `aircraft.schema.json` (lineage view): registrations, operator and ownership tenures, photos and stats. Finalized in Phase 3.
+- Draft `fleet-months.schema.json` (time slider): columnar monthly fleet counts per airline and family. Finalized in Phase 4.
+- Edge-case example datasets: `ceased-airline-with-successor/`, `reused-airline-code/`, `reused-registration/` and `aircraft-data-gaps/`.
+- Code generation (`npm run codegen`): TypeScript types in `web/src/lib/data/contract.gen.ts` and Pydantic models in `pipeline/lineage/contract_models.py`, generated from the stable schemas.
 
 ### Changed
 

@@ -1,0 +1,234 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aircraft-lineage.example/contract/aircraft.schema.json",
+  "title": "Aircraft",
+  "description": "DRAFT, finalized in Phase 3 (lineage view). One airframe's full life story, published as aircraft/{airframe_id}.json and loaded when the user selects an aircraft. Rules JSON Schema can't check: history arrays are sorted by start (null first), then end; airline_id values reference airlines.json; source_ids reference sources.json.",
+  "x-contract-status": "draft",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "manufacturer",
+    "type_code",
+    "family",
+    "msn",
+    "line_number",
+    "built",
+    "status",
+    "current",
+    "registrations",
+    "operator_tenures",
+    "ownership_tenures",
+    "photos",
+    "stats"
+  ],
+  "properties": {
+    "id": {
+      "description": "Stable airframe ID.",
+      "$ref": "defs.schema.json#/$defs/airframeId"
+    },
+    "manufacturer": {
+      "description": "Manufacturer display name.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128,
+      "examples": ["Airbus"]
+    },
+    "type_code": {
+      "description": "ICAO type designator, or null if unknown.",
+      "oneOf": [{ "$ref": "defs.schema.json#/$defs/icaoTypeCode" }, { "type": "null" }]
+    },
+    "family": {
+      "description": "Type family; 'other' for types that can't be mapped.",
+      "$ref": "defs.schema.json#/$defs/typeFamily"
+    },
+    "msn": {
+      "description": "Manufacturer serial number as published.",
+      "$ref": "defs.schema.json#/$defs/msn"
+    },
+    "line_number": {
+      "description": "Production line number, or null if unknown.",
+      "oneOf": [{ "type": "string", "minLength": 1, "maxLength": 32 }, { "type": "null" }]
+    },
+    "built": {
+      "description": "When the aircraft was built, or null if unknown.",
+      "oneOf": [{ "$ref": "defs.schema.json#/$defs/partialDate" }, { "type": "null" }]
+    },
+    "status": {
+      "description": "Lifecycle status, or null if unknown. Consumers must handle values added later.",
+      "oneOf": [
+        { "type": "string", "enum": ["active", "stored", "scrapped", "written_off", "converted"] },
+        { "type": "null" }
+      ]
+    },
+    "current": {
+      "description": "Where the aircraft is now, for linking back to the circle pack.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["airline_id", "reg"],
+      "properties": {
+        "airline_id": {
+          "description": "Airline whose current fleet lists the aircraft, or null if none.",
+          "oneOf": [{ "$ref": "defs.schema.json#/$defs/airlineId" }, { "type": "null" }]
+        },
+        "reg": {
+          "description": "Current registration, or null if unknown or deregistered.",
+          "oneOf": [{ "$ref": "defs.schema.json#/$defs/registration" }, { "type": "null" }]
+        }
+      }
+    },
+    "registrations": {
+      "description": "Registrations over time.",
+      "type": "array",
+      "items": { "$ref": "#/$defs/registrationPeriod" }
+    },
+    "operator_tenures": {
+      "description": "Who flew the aircraft over time; the lanes of the lineage view.",
+      "type": "array",
+      "items": { "$ref": "#/$defs/operatorTenure" }
+    },
+    "ownership_tenures": {
+      "description": "Who owned the aircraft over time, often a lessor or bank trustee rather than the operator.",
+      "type": "array",
+      "items": { "$ref": "#/$defs/ownershipTenure" }
+    },
+    "photos": {
+      "description": "Photos of the aircraft, sorted by taken_at (null last); the livery gallery.",
+      "type": "array",
+      "items": { "$ref": "#/$defs/photo" }
+    },
+    "stats": {
+      "$ref": "#/$defs/stats"
+    }
+  },
+  "$defs": {
+    "period": {
+      "title": "Period",
+      "description": "Start and end of a history record. A null start means unknown; a null end means ongoing or unknown.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["start", "end"],
+      "properties": {
+        "start": {
+          "description": "When the period started, or null if unknown.",
+          "oneOf": [{ "$ref": "defs.schema.json#/$defs/partialDate" }, { "type": "null" }]
+        },
+        "end": {
+          "description": "When the period ended, or null if ongoing or unknown.",
+          "oneOf": [{ "$ref": "defs.schema.json#/$defs/partialDate" }, { "type": "null" }]
+        }
+      }
+    },
+    "registrationPeriod": {
+      "title": "RegistrationPeriod",
+      "description": "One registration the aircraft carried.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reg", "icao24", "country", "period", "confidence", "source_ids"],
+      "properties": {
+        "reg": { "description": "Registration.", "$ref": "defs.schema.json#/$defs/registration" },
+        "icao24": {
+          "description": "ICAO 24-bit address used with this registration, as 6 uppercase hex digits, or null if unknown.",
+          "oneOf": [{ "type": "string", "pattern": "^[0-9A-F]{6}$" }, { "type": "null" }]
+        },
+        "country": {
+          "description": "Country of registry, or null if unknown.",
+          "oneOf": [{ "$ref": "defs.schema.json#/$defs/countryCode" }, { "type": "null" }]
+        },
+        "period": { "$ref": "#/$defs/period" },
+        "confidence": { "$ref": "defs.schema.json#/$defs/confidence" },
+        "source_ids": { "$ref": "defs.schema.json#/$defs/sourceIds" }
+      }
+    },
+    "operatorTenure": {
+      "title": "OperatorTenure",
+      "description": "A period with one operator, or a gap (storage, unknown).",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["airline_id", "operator_name", "kind", "period", "confidence", "source_ids"],
+      "properties": {
+        "airline_id": {
+          "description": "Operating airline, or null for storage, unknown gaps or operators not in airlines.json.",
+          "oneOf": [{ "$ref": "defs.schema.json#/$defs/airlineId" }, { "type": "null" }]
+        },
+        "operator_name": {
+          "description": "Operator name as found in the source, for operators without an airline_id; null otherwise.",
+          "oneOf": [{ "type": "string", "minLength": 1, "maxLength": 256 }, { "type": "null" }]
+        },
+        "kind": {
+          "description": "operated: normal operation; wet_lease: flown for another airline; stored: parked between operators; unknown: gap in the data.",
+          "type": "string",
+          "enum": ["operated", "wet_lease", "stored", "unknown"]
+        },
+        "period": { "$ref": "#/$defs/period" },
+        "confidence": { "$ref": "defs.schema.json#/$defs/confidence" },
+        "source_ids": { "$ref": "defs.schema.json#/$defs/sourceIds" }
+      }
+    },
+    "ownershipTenure": {
+      "title": "OwnershipTenure",
+      "description": "A period with one owner.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["owner_name", "owner_kind", "airline_id", "period", "confidence", "source_ids"],
+      "properties": {
+        "owner_name": { "description": "Owner as named in the source.", "type": "string", "minLength": 1, "maxLength": 256 },
+        "owner_kind": {
+          "description": "Kind of owner, or null if unknown.",
+          "oneOf": [
+            { "type": "string", "enum": ["airline", "lessor", "bank_trustee", "government", "private"] },
+            { "type": "null" }
+          ]
+        },
+        "airline_id": {
+          "description": "Airline, when the owner is one in airlines.json; null otherwise.",
+          "oneOf": [{ "$ref": "defs.schema.json#/$defs/airlineId" }, { "type": "null" }]
+        },
+        "period": { "$ref": "#/$defs/period" },
+        "confidence": { "$ref": "defs.schema.json#/$defs/confidence" },
+        "source_ids": { "$ref": "defs.schema.json#/$defs/sourceIds" }
+      }
+    },
+    "photo": {
+      "title": "AircraftPhoto",
+      "description": "A photo, matched to the livery and registration it shows where possible.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["image", "airline_id", "reg"],
+      "properties": {
+        "image": { "$ref": "defs.schema.json#/$defs/imageRef" },
+        "airline_id": {
+          "description": "Airline whose livery the photo shows, or null if unmatched.",
+          "oneOf": [{ "$ref": "defs.schema.json#/$defs/airlineId" }, { "type": "null" }]
+        },
+        "reg": {
+          "description": "Registration visible in the photo, or null if unknown.",
+          "oneOf": [{ "$ref": "defs.schema.json#/$defs/registration" }, { "type": "null" }]
+        }
+      }
+    },
+    "stats": {
+      "title": "AircraftStats",
+      "description": "Summary figures. Values derivable from the arrays above (e.g. time per operator) are left to the app.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["operator_count", "registration_count", "observed_flights", "first_seen", "last_seen"],
+      "properties": {
+        "operator_count": { "description": "Distinct operators, excluding storage and unknown gaps.", "$ref": "defs.schema.json#/$defs/count" },
+        "registration_count": { "description": "Distinct registrations.", "$ref": "defs.schema.json#/$defs/count" },
+        "observed_flights": {
+          "description": "Flights seen in ADS-B data, or null if not measured.",
+          "oneOf": [{ "$ref": "defs.schema.json#/$defs/count" }, { "type": "null" }]
+        },
+        "first_seen": {
+          "description": "First month seen in ADS-B data, or null if not measured.",
+          "oneOf": [{ "$ref": "defs.schema.json#/$defs/month" }, { "type": "null" }]
+        },
+        "last_seen": {
+          "description": "Last month seen in ADS-B data, or null if not measured.",
+          "oneOf": [{ "$ref": "defs.schema.json#/$defs/month" }, { "type": "null" }]
+        }
+      }
+    }
+  }
+}

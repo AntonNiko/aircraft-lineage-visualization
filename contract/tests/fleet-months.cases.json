@@ -1,0 +1,158 @@
+{
+  "description": "DRAFT cases for schemas/fleet-months.schema.json; expand when the schema is finalized in Phase 4.",
+  "valid": [
+    {
+      "months": [
+        "2026-06",
+        "2026-07",
+        "2026-08"
+      ],
+      "airlines": [
+        {
+          "airline_id": "al-example-air",
+          "totals": [
+            2,
+            3,
+            3
+          ],
+          "by_family": {
+            "a320fam": [
+              2,
+              2,
+              2
+            ],
+            "a350": [
+              0,
+              1,
+              1
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "months": [],
+      "airlines": []
+    }
+  ],
+  "invalid": [
+    {
+      "why": "count is negative",
+      "value": {
+        "months": [
+          "2026-06",
+          "2026-07",
+          "2026-08"
+        ],
+        "airlines": [
+          {
+            "airline_id": "al-example-air",
+            "totals": [
+              -1,
+              3,
+              3
+            ],
+            "by_family": {
+              "a320fam": [
+                2,
+                2,
+                2
+              ],
+              "a350": [
+                0,
+                1,
+                1
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "why": "month is a full date",
+      "value": {
+        "months": [
+          "2026-06-01",
+          "2026-07",
+          "2026-08"
+        ],
+        "airlines": [
+          {
+            "airline_id": "al-example-air",
+            "totals": [
+              2,
+              3,
+              3
+            ],
+            "by_family": {
+              "a320fam": [
+                2,
+                2,
+                2
+              ],
+              "a350": [
+                0,
+                1,
+                1
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "why": "by_family key not a family slug",
+      "value": {
+        "months": [
+          "2026-06",
+          "2026-07",
+          "2026-08"
+        ],
+        "airlines": [
+          {
+            "airline_id": "al-example-air",
+            "totals": [
+              2,
+              3,
+              3
+            ],
+            "by_family": {
+              "A320 family": [
+                2,
+                2,
+                2
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "why": "airline series missing totals",
+      "value": {
+        "months": [
+          "2026-06",
+          "2026-07",
+          "2026-08"
+        ],
+        "airlines": [
+          {
+            "airline_id": "al-example-air",
+            "by_family": {
+              "a320fam": [
+                2,
+                2,
+                2
+              ],
+              "a350": [
+                0,
+                1,
+                1
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

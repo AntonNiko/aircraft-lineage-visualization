@@ -1,0 +1,41 @@
+{
+  "docs": [
+    {
+      "kind": "aircraft",
+      "id": "atr-atr72-1044",
+      "airline_id": "al-unmatched-operator",
+      "label": "SE-MXB · AT75 · NORDIC EXAMPLE AVIATION AB",
+      "terms": [
+        "1044",
+        "SE-MXB"
+      ]
+    },
+    {
+      "kind": "aircraft",
+      "id": "atr-atr72-1101",
+      "airline_id": "al-unmatched-operator",
+      "label": "SE-MXA · AT76 · NORDIC EXAMPLE AVIATION AB",
+      "terms": [
+        "1101",
+        "SE-MXA"
+      ]
+    },
+    {
+      "kind": "aircraft",
+      "id": "saab-340-340a123",
+      "airline_id": "al-unmatched-operator",
+      "label": "MSN 340A-123 · other · NORDIC EXAMPLE AVIATION AB",
+      "terms": [
+        "340A-123"
+      ]
+    },
+    {
+      "kind": "airline",
+      "id": "al-unmatched-operator",
+      "label": "NORDIC EXAMPLE AVIATION AB",
+      "terms": [
+        "NORDIC EXAMPLE AVIATION AB"
+      ]
+    }
+  ]
+}
